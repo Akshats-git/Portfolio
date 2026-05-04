@@ -1,0 +1,184 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const codeVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20"
+    >
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-6xl mx-auto w-full"
+      >
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+          {/* Greeting */}
+          <motion.div variants={itemVariants} className="space-y-3">
+            <p className="text-blue-400 font-semibold text-lg">
+              Welcome to my portfolio
+            </p>
+            <h1 className="text-5xl sm:text-7xl font-bold">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                Creative Developer
+              </span>
+            </h1>
+            <h2 className="text-3xl sm:text-5xl font-bold text-slate-300">
+              & Digital Creator
+            </h2>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-slate-400 leading-relaxed max-w-2xl"
+          >
+            I craft modern, responsive web applications with cutting-edge
+            technologies. Specializing in Next.js, React, and full-stack
+            development with a passion for clean code and intuitive design.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 pt-4"
+          >
+            <motion.a
+              href="#projects"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-shadow block text-center"
+            >
+              View My Work
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 border-2 border-slate-500 text-slate-300 font-semibold rounded-lg hover:border-blue-400 hover:text-blue-400 transition-colors block text-center"
+            >
+              Get In Touch
+            </motion.a>
+          </motion.div>
+
+          {/* Floating Code Snippet */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-16 hidden lg:block"
+          >
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 backdrop-blur-sm max-w-md">
+              <div className="flex gap-2 mb-4">
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+              </div>
+              <pre className="text-sm text-slate-300 font-mono">
+                <span className="text-pink-400">const</span>{" "}
+                <span className="text-cyan-400">developer</span> = {"{"}
+                <br />
+                <span className="ml-4">
+                  <span className="text-slate-500">{`// Building amazing experiences`}</span>
+                </span>
+                <br />
+                <span className="ml-4">
+                  <span className="text-blue-400">skills</span>:
+                  <span className="text-green-400">
+                    {`["React", "Next.js", "TypeScript"]`}
+                  </span>
+                </span>
+                <br />
+                {"}"}
+              </pre>
+            </div>
+          </motion.div>
+          </div>
+
+          {/* Profile Photo Section */}
+          <motion.div variants={itemVariants} className="flex justify-center">
+            <div className="relative">
+              {/* Animated background glow */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-75 blur-lg"
+              />
+              
+              {/* Circular photo container */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 p-1"
+              >
+                <div className="rounded-full bg-slate-900 w-full h-full" />
+              </motion.div>
+
+              {/* Photo placeholder */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="relative z-10 w-64 h-64 rounded-full overflow-hidden border-4 border-slate-950 shadow-2xl"
+              >
+                <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
+                  <span className="text-6xl">📸</span>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <svg
+          className="w-6 h-6 text-blue-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Hero;
