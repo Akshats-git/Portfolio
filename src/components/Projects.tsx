@@ -12,7 +12,6 @@ interface Project {
   domains: Array<"Agentic AI" | "ML" | "Full Stack">;
   githubUrl: string;
   image: string;
-  color: string;
 }
 
 const projectFilters = ["All", "Agentic AI", "ML", "Full Stack"] as const;
@@ -33,7 +32,6 @@ const Projects = () => {
       domains: ["Full Stack"],
       githubUrl: "https://github.com",
       image: "🛍️",
-      color: "from-blue-500 to-cyan-500",
     },
     {
       id: 2,
@@ -44,7 +42,6 @@ const Projects = () => {
       domains: ["Full Stack"],
       githubUrl: "https://github.com",
       image: "✓",
-      color: "from-purple-500 to-pink-500",
     },
     {
       id: 3,
@@ -55,7 +52,6 @@ const Projects = () => {
       domains: ["ML", "Full Stack"],
       githubUrl: "https://github.com",
       image: "📊",
-      color: "from-green-500 to-emerald-500",
     },
     {
       id: 4,
@@ -66,7 +62,6 @@ const Projects = () => {
       domains: ["Full Stack"],
       githubUrl: "https://github.com",
       image: "👥",
-      color: "from-orange-500 to-red-500",
     },
     {
       id: 5,
@@ -77,7 +72,6 @@ const Projects = () => {
       domains: ["Agentic AI", "Full Stack"],
       githubUrl: "https://github.com",
       image: "🤖",
-      color: "from-teal-500 to-cyan-500",
     },
     {
       id: 6,
@@ -88,7 +82,6 @@ const Projects = () => {
       domains: ["Full Stack"],
       githubUrl: "https://github.com",
       image: "🎨",
-      color: "from-indigo-500 to-purple-500",
     },
   ];
 
@@ -181,7 +174,7 @@ const Projects = () => {
               <div
                 className="absolute inset-0 rounded-lg blur opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
-                  background: `linear-gradient(135deg, ${project.color})`,
+                  background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary}, ${theme.accent})`,
                 }}
               />
               <div className="relative bg-slate-800/90 border border-slate-700 rounded-lg p-6 h-full transition-colors" style={{ borderColor: theme.primary }}>

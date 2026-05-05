@@ -133,7 +133,8 @@ const Hero = () => {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-75 blur-lg"
+                className="absolute inset-0 rounded-full opacity-75 blur-lg"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary}, ${theme.accent})` }}
               />
               
               {/* Circular photo container */}

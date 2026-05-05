@@ -31,7 +31,8 @@ const ThemePanel = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-6 bottom-6 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center text-white text-xl"
+        className="fixed right-6 bottom-6 z-40 w-14 h-14 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center text-white text-xl"
+        style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
         title="Open theme customizer"
       >
         🎨
@@ -96,7 +97,8 @@ const ThemePanel = () => {
                               e.target.value
                             )
                           }
-                          className="w-12 h-10 rounded cursor-pointer border-2 border-slate-700 hover:border-blue-500 transition-colors"
+                          className="w-12 h-10 rounded cursor-pointer border-2 border-slate-700 transition-colors"
+                          style={{ borderColor: theme.primary }}
                         />
                         <input
                           type="text"
@@ -107,7 +109,8 @@ const ThemePanel = () => {
                               e.target.value
                             )
                           }
-                          className="w-24 px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded border border-slate-700 focus:border-blue-500 focus:outline-none transition-colors"
+                          className="w-24 px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded border border-slate-700 focus:outline-none transition-colors"
+                          style={{ borderColor: theme.primary }}
                         />
                       </div>
                     </motion.div>

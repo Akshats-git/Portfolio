@@ -6,7 +6,6 @@ import { useTheme } from "@/context/ThemeContext";
 interface SkillCategory {
   name: string;
   skills: string[];
-  color: string;
 }
 
 const Skills = () => {
@@ -15,22 +14,18 @@ const Skills = () => {
     {
       name: "Frontend",
       skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux"],
-      color: "from-blue-500 to-cyan-500",
     },
     {
       name: "Backend",
       skills: ["Node.js", "Express", "Python", "PostgreSQL", "MongoDB", "Firebase"],
-      color: "from-purple-500 to-pink-500",
     },
     {
       name: "Tools & Platforms",
       skills: ["Git", "Docker", "AWS", "Vercel", "GitHub Actions", "VS Code"],
-      color: "from-green-500 to-emerald-500",
     },
     {
       name: "UI/UX & Design",
       skills: ["Figma", "Shadcn UI", "Material-UI", "Web Design", "Responsive Design", "Accessibility"],
-      color: "from-orange-500 to-red-500",
     },
   ];
 

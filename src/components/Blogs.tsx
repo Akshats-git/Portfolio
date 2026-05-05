@@ -11,7 +11,6 @@ interface Blog {
   readTime: string;
   category: string;
   tags: string[];
-  color: string;
 }
 
 const Blogs = () => {
@@ -26,7 +25,6 @@ const Blogs = () => {
       readTime: "8 min",
       category: "Web Development",
       tags: ["Next.js", "React", "Web Development"],
-      color: "from-blue-500 to-cyan-500",
     },
     {
       id: 2,
@@ -37,7 +35,6 @@ const Blogs = () => {
       readTime: "12 min",
       category: "Machine Learning",
       tags: ["ML", "DevOps", "Python"],
-      color: "from-purple-500 to-pink-500",
     },
     {
       id: 3,
@@ -48,7 +45,6 @@ const Blogs = () => {
       readTime: "10 min",
       category: "TypeScript",
       tags: ["TypeScript", "Best Practices"],
-      color: "from-orange-500 to-red-500",
     },
     {
       id: 4,
@@ -59,7 +55,6 @@ const Blogs = () => {
       readTime: "9 min",
       category: "Web Development",
       tags: ["WebSocket", "Real-time", "Backend"],
-      color: "from-green-500 to-emerald-500",
     },
   ];
 
@@ -87,9 +82,16 @@ const Blogs = () => {
   return (
     <section
       id="blogs"
-      className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-20 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-screen overflow-hidden py-20 px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: theme.background }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage: `radial-gradient(circle at top, ${theme.primary}22, transparent 42%), radial-gradient(circle at bottom right, ${theme.secondary}18, transparent 36%)`,
+        }}
+      />
+      <div className="relative max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -124,8 +126,8 @@ const Blogs = () => {
               <div className="relative h-full border border-slate-800 rounded-xl p-6 bg-slate-900/30 backdrop-blur-sm transition-all duration-300 overflow-hidden" style={{ borderColor: theme.primary }}>
                 {/* Background gradient */}
                 <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br ${blog.color}`}
-                  style={{ backgroundImage: `linear-gradient(to bottom right, ${theme.primary}, ${theme.secondary})` }}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                  style={{ backgroundImage: `linear-gradient(to bottom right, ${theme.primary}, ${theme.secondary}, ${theme.accent})` }}
                 />
 
                 <div className="relative z-10">
