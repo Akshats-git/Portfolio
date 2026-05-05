@@ -84,13 +84,14 @@ const Hero = () => {
               View My Work
             </motion.a>
             <motion.a
-              href="#contact"
+              href="/resume.pdf"
+              download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 border-2 font-semibold rounded-lg transition-colors block text-center"
-              style={{ borderColor: theme.primary, color: theme.primary }}
+              style={{ borderColor: theme.secondary, color: theme.secondary }}
             >
-              Get In Touch
+              Download Resume
             </motion.a>
           </motion.div>
 
