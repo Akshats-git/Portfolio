@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface Project {
   id: number;
@@ -20,6 +21,7 @@ type ProjectFilter = (typeof projectFilters)[number];
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
+  const { theme } = useTheme();
 
   const projects: Project[] = [
     {
@@ -129,11 +131,11 @@ const Projects = () => {
         {/* Section Title */}
         <motion.div variants={itemVariants} className="mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}>
               Featured Projects
             </span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-cyan-400 rounded" />
+          <div className="h-1 w-20 rounded" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }} />
         </motion.div>
 
         {/* Filter Bar */}
@@ -153,9 +155,10 @@ const Projects = () => {
                 onClick={() => setActiveFilter(filter)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
                   isActive
-                    ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
-                    : "border border-slate-700 bg-slate-900/70 text-slate-300 hover:border-blue-400 hover:text-blue-300"
+                    ? "text-white shadow-lg"
+                    : "border border-slate-700 bg-slate-900/70 text-slate-300"
                 }`}
+                style={isActive ? { backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` } : undefined}
               >
                 {filter}
               </motion.button>
@@ -181,12 +184,12 @@ const Projects = () => {
                   background: `linear-gradient(135deg, ${project.color})`,
                 }}
               />
-              <div className="relative bg-slate-800/90 border border-slate-700 rounded-lg p-6 h-full hover:border-blue-400 transition-colors">
+              <div className="relative bg-slate-800/90 border border-slate-700 rounded-lg p-6 h-full transition-colors" style={{ borderColor: theme.primary }}>
                 {/* Icon */}
                 <div className="text-5xl mb-4">{project.image}</div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-slate-100 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all">
+                <h3 className="text-xl font-bold text-slate-100 mb-3">
                   {project.title}
                 </h3>
 
@@ -199,7 +202,8 @@ const Projects = () => {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs bg-slate-700/50 text-blue-300 px-3 py-1 rounded-full border border-slate-600"
+                      className="text-xs bg-slate-700/50 px-3 py-1 rounded-full border border-slate-600"
+                      style={{ color: theme.primary, borderColor: theme.primary }}
                     >
                       {tag}
                     </span>
@@ -211,7 +215,8 @@ const Projects = () => {
                   <motion.a
                     href="#"
                     whileHover={{ x: 5 }}
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-cyan-400 transition-colors text-sm font-semibold"
+                    className="inline-flex items-center gap-2 transition-colors text-sm font-semibold"
+                    style={{ color: theme.primary }}
                   >
                     View Project →
                   </motion.a>
@@ -223,7 +228,8 @@ const Projects = () => {
                     rel="noreferrer"
                     whileHover={{ y: -1 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-600 px-3 py-2 text-xs font-semibold text-slate-200 transition-colors hover:border-blue-400 hover:text-blue-300"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-600 px-3 py-2 text-xs font-semibold text-slate-200 transition-colors"
+                    style={{ borderColor: theme.primary, color: theme.primary }}
                     aria-label={`Open ${project.title} GitHub repository`}
                   >
                     <svg

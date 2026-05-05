@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 
 const Hero = () => {
+  const { theme } = useTheme();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,11 +46,11 @@ const Hero = () => {
           <div className="space-y-8">
           {/* Greeting */}
           <motion.div variants={itemVariants} className="space-y-3">
-            <p className="text-blue-400 font-semibold text-lg">
+            <p className="font-semibold text-lg" style={{ color: theme.primary }}>
               Welcome to my portfolio
             </p>
             <h1 className="text-5xl sm:text-7xl font-bold">
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary}, ${theme.accent})` }}>
                 Creative Developer
               </span>
             </h1>
@@ -76,7 +78,8 @@ const Hero = () => {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-shadow block text-center"
+              className="px-8 py-3 text-white font-semibold rounded-lg transition-shadow block text-center"
+              style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
             >
               View My Work
             </motion.a>
@@ -84,7 +87,8 @@ const Hero = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border-2 border-slate-500 text-slate-300 font-semibold rounded-lg hover:border-blue-400 hover:text-blue-400 transition-colors block text-center"
+              className="px-8 py-3 border-2 font-semibold rounded-lg transition-colors block text-center"
+              style={{ borderColor: theme.primary, color: theme.primary }}
             >
               Get In Touch
             </motion.a>
@@ -103,14 +107,14 @@ const Hero = () => {
               </div>
               <pre className="text-sm text-slate-300 font-mono">
                 <span className="text-pink-400">const</span>{" "}
-                <span className="text-cyan-400">developer</span> = {"{"}
+                <span style={{ color: theme.secondary }}>developer</span> = {"{"}
                 <br />
                 <span className="ml-4">
                   <span className="text-slate-500">{`// Building amazing experiences`}</span>
                 </span>
                 <br />
                 <span className="ml-4">
-                  <span className="text-blue-400">skills</span>:
+                  <span style={{ color: theme.primary }}>skills</span>:
                   <span className="text-green-400">
                     {`["React", "Next.js", "TypeScript"]`}
                   </span>
@@ -136,7 +140,8 @@ const Hero = () => {
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 p-1"
+                className="absolute inset-0 rounded-full p-1"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
               >
                 <div className="rounded-full bg-slate-900 w-full h-full" />
               </motion.div>
@@ -164,10 +169,11 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <svg
-          className="w-6 h-6 text-blue-400"
+          className="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          style={{ color: theme.primary }}
         >
           <path
             strokeLinecap="round"

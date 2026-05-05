@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 const Contact = () => {
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -68,29 +70,40 @@ const Contact = () => {
         {/* Section Title */}
         <motion.div variants={itemVariants} className="mb-12 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
+            >
               Get In Touch
             </span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Have a project in mind or just want to chat? Feel free to reach out!
           </p>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-cyan-400 rounded mx-auto mt-4" />
+          <div className="h-1 w-20 rounded mx-auto mt-4" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }} />
         </motion.div>
 
-        {/* Contact Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {/* Contact Grid (cards) */}
+        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Email */}
           <motion.a
             variants={itemVariants}
             href="mailto:contact@example.com"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             className="group text-center"
           >
-            <div className="bg-slate-800/50 border border-slate-700 group-hover:border-blue-400 rounded-lg p-8 transition-colors">
-              <div className="text-4xl mb-4">✉️</div>
-              <h3 className="text-xl font-semibold text-slate-200 mb-2">Email</h3>
-              <p className="text-blue-400 group-hover:text-cyan-400 transition-colors">
+            <div
+              className="rounded-lg p-8 transition-transform transform hover:-translate-y-1 shadow-sm hover:shadow-lg mx-2"
+              style={{ backgroundColor: 'rgba(15,23,42,0.65)', border: `1px solid ${theme.primary}` }}
+            >
+              <div
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4"
+                style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: '#fff' }}
+              >
+                <span className="text-xl">✉️</span>
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-2">Email</h3>
+              <p className="text-sm" style={{ color: theme.secondary, fontWeight: 600 }}>
                 contact@example.com
               </p>
             </div>
@@ -100,46 +113,57 @@ const Contact = () => {
           <motion.a
             variants={itemVariants}
             href="tel:+1234567890"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             className="group text-center"
           >
-            <div className="bg-slate-800/50 border border-slate-700 group-hover:border-blue-400 rounded-lg p-8 transition-colors">
-              <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-xl font-semibold text-slate-200 mb-2">Phone</h3>
-              <p className="text-blue-400 group-hover:text-cyan-400 transition-colors">
+            <div
+              className="rounded-lg p-8 transition-transform transform hover:-translate-y-1 shadow-sm hover:shadow-lg mx-2"
+              style={{ backgroundColor: 'rgba(15,23,42,0.65)', border: `1px solid ${theme.primary}` }}
+            >
+              <div
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4"
+                style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: '#fff' }}
+              >
+                <span className="text-xl">📱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-2">Phone</h3>
+              <p className="text-sm" style={{ color: theme.secondary, fontWeight: 600 }}>
                 +1 (234) 567-890
               </p>
             </div>
           </motion.a>
 
           {/* Location */}
-          <motion.div
-            variants={itemVariants}
-            className="group text-center"
-          >
-            <div className="bg-slate-800/50 border border-slate-700 group-hover:border-blue-400 rounded-lg p-8 transition-colors">
-              <div className="text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-semibold text-slate-200 mb-2">Location</h3>
-              <p className="text-blue-400 group-hover:text-cyan-400 transition-colors">
+          <motion.div variants={itemVariants} className="group text-center">
+            <div
+              className="rounded-lg p-8 transition-transform transform hover:-translate-y-1 shadow-sm hover:shadow-lg mx-2"
+              style={{ backgroundColor: 'rgba(15,23,42,0.65)', border: `1px solid ${theme.primary}` }}
+            >
+              <div
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4"
+                style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: '#fff' }}
+              >
+                <span className="text-xl">📍</span>
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-2">Location</h3>
+              <p className="text-sm" style={{ color: theme.secondary, fontWeight: 600 }}>
                 San Francisco, CA
               </p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Contact Form */}
         <motion.form
           variants={itemVariants}
           onSubmit={handleSubmit}
-          className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 md:p-12"
+          className="bg-slate-800/50 border rounded-lg p-8 md:p-12"
+          style={{ borderColor: theme.primary }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name Field */}
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-slate-300 mb-2"
-              >
+              <label htmlFor="name" className="block text-sm font-semibold text-slate-300 mb-2">
                 Name
               </label>
               <input
@@ -149,17 +173,15 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-colors"
+                className="w-full bg-slate-900/60 border rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none transition-colors"
+                style={{ borderColor: theme.primary }}
                 placeholder="Your name"
               />
             </div>
 
             {/* Email Field */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-slate-300 mb-2"
-              >
+              <label htmlFor="email" className="block text-sm font-semibold text-slate-300 mb-2">
                 Email
               </label>
               <input
@@ -169,7 +191,8 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-colors"
+                className="w-full bg-slate-900/60 border rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none transition-colors"
+                style={{ borderColor: theme.primary }}
                 placeholder="your@email.com"
               />
             </div>
@@ -177,10 +200,7 @@ const Contact = () => {
 
           {/* Subject Field */}
           <div className="mb-6">
-            <label
-              htmlFor="subject"
-              className="block text-sm font-semibold text-slate-300 mb-2"
-            >
+            <label htmlFor="subject" className="block text-sm font-semibold text-slate-300 mb-2">
               Subject
             </label>
             <input
@@ -190,17 +210,15 @@ const Contact = () => {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-colors"
+              className="w-full bg-slate-900/60 border rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none transition-colors"
+              style={{ borderColor: theme.primary }}
               placeholder="Project inquiry"
             />
           </div>
 
           {/* Message Field */}
           <div className="mb-6">
-            <label
-              htmlFor="message"
-              className="block text-sm font-semibold text-slate-300 mb-2"
-            >
+            <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">
               Message
             </label>
             <textarea
@@ -210,7 +228,8 @@ const Contact = () => {
               onChange={handleChange}
               required
               rows={6}
-              className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-colors resize-none"
+              className="w-full bg-slate-900/60 border rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none transition-colors resize-none"
+              style={{ borderColor: theme.primary }}
               placeholder="Tell me about your project..."
             />
           </div>
@@ -222,10 +241,9 @@ const Contact = () => {
             type="submit"
             disabled={submitted}
             className={`w-full py-3 font-semibold rounded-lg transition-all ${
-              submitted
-                ? "bg-green-500 text-white"
-                : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-blue-500/50"
+              submitted ? "bg-green-500 text-white" : "text-white"
             }`}
+            style={submitted ? undefined : { backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
           >
             {submitted ? "✓ Message Sent!" : "Send Message"}
           </motion.button>

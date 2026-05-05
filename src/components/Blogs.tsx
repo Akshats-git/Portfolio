@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 
 interface Blog {
   id: number;
@@ -14,6 +15,7 @@ interface Blog {
 }
 
 const Blogs = () => {
+  const { theme } = useTheme();
   const blogs: Blog[] = [
     {
       id: 1,
@@ -96,7 +98,7 @@ const Blogs = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}>
             Blog Posts
           </h2>
           <p className="text-slate-400 text-lg">
@@ -119,17 +121,19 @@ const Blogs = () => {
               whileHover={{ translateY: -8 }}
               className="group cursor-pointer"
             >
-              <div className="relative h-full border border-slate-800 rounded-xl p-6 bg-slate-900/30 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 overflow-hidden">
+              <div className="relative h-full border border-slate-800 rounded-xl p-6 bg-slate-900/30 backdrop-blur-sm transition-all duration-300 overflow-hidden" style={{ borderColor: theme.primary }}>
                 {/* Background gradient */}
                 <div
                   className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br ${blog.color}`}
+                  style={{ backgroundImage: `linear-gradient(to bottom right, ${theme.primary}, ${theme.secondary})` }}
                 />
 
                 <div className="relative z-10">
                   {/* Category and Date */}
                   <div className="flex items-center justify-between mb-3">
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${blog.color} text-white`}
+                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white"
+                      style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
                     >
                       {blog.category}
                     </span>
@@ -137,7 +141,7 @@ const Blogs = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 transition-colors" style={{ color: theme.primary }}>
                     {blog.title}
                   </h3>
 
@@ -151,7 +155,7 @@ const Blogs = () => {
                     {blog.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="text-xs px-2 py-1 rounded-md bg-slate-800/50 text-slate-300 hover:bg-slate-700 transition-colors"
+                        className="text-xs px-2 py-1 rounded-md bg-slate-800/50 text-slate-300 transition-colors"
                       >
                         {tag}
                       </span>
@@ -164,7 +168,8 @@ const Blogs = () => {
                     <motion.a
                       href="#"
                       whileHover={{ x: 4 }}
-                      className="text-blue-400 hover:text-cyan-400 transition-colors text-sm font-medium"
+                      className="transition-colors text-sm font-medium"
+                      style={{ color: theme.primary }}
                     >
                       Read More →
                     </motion.a>
@@ -186,7 +191,8 @@ const Blogs = () => {
           <motion.a
             href="#"
             whileHover={{ scale: 1.05 }}
-            className="inline-block px-8 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all"
+            className="inline-block px-8 py-3 rounded-lg text-white font-semibold transition-all"
+            style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
           >
             View All Articles
           </motion.a>

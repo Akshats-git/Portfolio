@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 
 const About = () => {
+  const { theme } = useTheme();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -37,11 +39,11 @@ const About = () => {
         {/* Section Title */}
         <motion.div variants={itemVariants} className="mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}>
               About Me
             </span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-cyan-400 rounded" />
+          <div className="h-1 w-20 rounded" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }} />
         </motion.div>
 
         {/* Content Grid */}
@@ -68,19 +70,19 @@ const About = () => {
               </h3>
               <ul className="space-y-2 text-slate-400">
                 <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }} />
                   Full-stack web development
                 </li>
                 <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }} />
                   React &amp; Next.js expertise
                 </li>
                 <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }} />
                   UI/UX design and implementation
                 </li>
                 <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }} />
                   Cloud deployment & DevOps
                 </li>
               </ul>
@@ -92,44 +94,48 @@ const About = () => {
             variants={itemVariants}
             className="grid grid-cols-2 gap-6"
           >
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2"
+                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
               >
                 50+
               </motion.div>
               <p className="text-slate-400">Projects Completed</p>
             </div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-                className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2"
+                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.secondary}, ${theme.accent})` }}
               >
                 5+
               </motion.div>
               <p className="text-slate-400">Years Experience</p>
             </div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
-                className="text-4xl font-bold bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent mb-2"
+                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.secondary}, ${theme.primary})` }}
               >
                 100%
               </motion.div>
               <p className="text-slate-400">Client Satisfaction</p>
             </div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2"
+                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
+                style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.accent})` }}
               >
                 20+
               </motion.div>

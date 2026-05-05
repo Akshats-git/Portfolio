@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
 
   const socialLinks = [
     { id: "twitter", icon: "𝕏", label: "Twitter", href: "https://twitter.com" },
@@ -38,7 +40,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+            <h3 className="text-xl font-bold bg-clip-text text-transparent mb-2" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}>
               Akshat
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -60,7 +62,8 @@ const Footer = () => {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-slate-400 hover:text-blue-400 transition-colors text-sm"
+                    className="text-slate-400 transition-colors text-sm"
+                    style={{ color: theme.primary }}
                   >
                     {link.label}
                   </a>
@@ -84,7 +87,8 @@ const Footer = () => {
                   href={social.href}
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-blue-400 hover:text-cyan-400 transition-colors"
+                  className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center transition-colors"
+                  style={{ color: theme.primary }}
                   title={social.label}
                 >
                   {social.icon}

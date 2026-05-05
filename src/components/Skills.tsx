@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 
 interface SkillCategory {
   name: string;
@@ -9,6 +10,7 @@ interface SkillCategory {
 }
 
 const Skills = () => {
+  const { theme } = useTheme();
   const skillCategories: SkillCategory[] = [
     {
       name: "Frontend",
@@ -76,11 +78,11 @@ const Skills = () => {
         {/* Section Title */}
         <motion.div variants={itemVariants} className="mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}>
               Technical Skills
             </span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-cyan-400 rounded" />
+          <div className="h-1 w-20 rounded" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }} />
         </motion.div>
 
         {/* Skills Grid */}
@@ -93,14 +95,7 @@ const Skills = () => {
               {/* Category Header */}
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-4">
-                  <span
-                    className="bg-gradient-to-r bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, ${category.color})`
-                    }}
-                  >
-                    {category.name}
-                  </span>
+                  <span style={{ color: theme.primary }}>{category.name}</span>
                 </h3>
 
                 {/* Skills */}
@@ -112,7 +107,7 @@ const Skills = () => {
                       whileHover="hover"
                       className="cursor-pointer"
                     >
-                      <div className="bg-slate-800/50 border border-slate-700 hover:border-blue-400 rounded-lg px-4 py-2 transition-colors">
+                      <div className="bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 transition-colors" style={{ borderColor: theme.primary }}>
                         <span className="text-slate-200 font-semibold text-sm">
                           {skill}
                         </span>
@@ -139,7 +134,7 @@ const Skills = () => {
               <motion.div key={skill.name} variants={itemVariants}>
                 <div className="flex justify-between mb-2">
                   <span className="text-slate-300 font-semibold">{skill.name}</span>
-                  <span className="text-blue-400 font-semibold">{skill.percentage}%</span>
+                  <span className="font-semibold" style={{ color: theme.primary }}>{skill.percentage}%</span>
                 </div>
                 <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
                   <motion.div
@@ -147,7 +142,8 @@ const Skills = () => {
                     whileInView={{ width: `${skill.percentage}%` }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"
+                    className="h-full rounded-full"
+                    style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
                   />
                 </div>
               </motion.div>

@@ -6,6 +6,7 @@ import Blogs from "@/components/Blogs";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ThemePanel from "@/components/ThemePanel";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Skills />
       <Contact />
       <Footer />
+      <ThemePanel />
     </main>
   );
 }

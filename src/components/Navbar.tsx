@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -30,7 +32,10 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+            className="text-xl font-bold bg-clip-text text-transparent"
+            style={{
+              backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
+            }}
           >
             Akshat
           </motion.div>
@@ -44,7 +49,8 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * idx }}
-                className="text-slate-300 hover:text-blue-400 transition-colors"
+                className="text-slate-300 transition-colors"
+                whileHover={{ color: theme.primary }}
               >
                 {item.label}
               </motion.a>
@@ -57,7 +63,8 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-slate-300 hover:text-blue-400"
+            className="md:hidden text-slate-300"
+            whileHover={{ color: theme.primary }}
           >
             <svg
               className="w-6 h-6"
@@ -84,14 +91,15 @@ const Navbar = () => {
             className="md:hidden pb-4 flex flex-col gap-3"
           >
             {navItems.map((item) => (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
-                className="text-slate-300 hover:text-blue-400 transition-colors"
+                className="text-slate-300 transition-colors"
+                whileHover={{ color: theme.primary }}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
-              </a>
+              </motion.a>
             ))}
           </motion.div>
         )}
