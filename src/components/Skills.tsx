@@ -17,7 +17,11 @@ const Skills = () => {
     },
     {
       name: "Backend",
-      skills: ["Node.js", "Express", "Python", "PostgreSQL", "MongoDB", "Firebase"],
+      skills: ["Node.js", "Express", "Python", "FastAPI", "Django"],
+    },
+    {
+      name: "Databases",
+      skills: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL", "DynamoDB"],
     },
     {
       name: "Tools & Platforms",
@@ -26,6 +30,10 @@ const Skills = () => {
     {
       name: "UI/UX & Design",
       skills: ["Figma", "Shadcn UI", "Material-UI", "Web Design", "Responsive Design", "Accessibility"],
+    },
+    {
+      name: "Agentic Frameworks",
+      skills: ["LangChain", "AutoGen", "CrewAI", "Hugging Face", "RAG Systems", "OpenAI API"],
     },
   ];
 
