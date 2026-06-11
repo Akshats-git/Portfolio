@@ -17,11 +17,11 @@ const Skills = () => {
     },
     {
       name: "Backend",
-      skills: ["Node.js", "Express", "Python", "FastAPI", "Django"],
+      skills: ["Node.js", "Express", "Python", "FastAPI"],
     },
     {
       name: "Databases",
-      skills: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL", "DynamoDB"],
+      skills: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL"],
     },
     {
       name: "Tools & Platforms",
@@ -29,11 +29,11 @@ const Skills = () => {
     },
     {
       name: "UI/UX & Design",
-      skills: ["Figma", "Shadcn UI", "Material-UI", "Web Design", "Responsive Design", "Accessibility"],
+      skills: ["Figma", "Shadcn UI", "Material-UI"],
     },
     {
       name: "Agentic Frameworks",
-      skills: ["LangChain", "AutoGen", "CrewAI", "Hugging Face", "RAG Systems", "OpenAI API"],
+      skills: ["LangChain", "Hugging Face", "RAG Systems", "LangGraph"],
     },
   ];
 
@@ -121,37 +121,6 @@ const Skills = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Proficiency Bars */}
-        <motion.div variants={itemVariants} className="mt-16 pt-16 border-t border-slate-700">
-          <h3 className="text-2xl font-bold mb-8 text-slate-200">Proficiency</h3>
-          
-          <div className="space-y-6">
-            {[
-              { name: "React & Next.js", percentage: 95 },
-              { name: "TypeScript", percentage: 90 },
-              { name: "Full Stack Development", percentage: 88 },
-              { name: "UI/UX Design", percentage: 85 },
-            ].map((skill) => (
-              <motion.div key={skill.name} variants={itemVariants}>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-300 font-semibold">{skill.name}</span>
-                  <span className="font-semibold" style={{ color: theme.primary }}>{skill.percentage}%</span>
-                </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.percentage}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className="h-full rounded-full"
-                    style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </motion.div>
     </section>

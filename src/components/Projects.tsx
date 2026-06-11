@@ -9,12 +9,12 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
-  domains: Array<"Agentic AI" | "ML" | "Full Stack">;
+  domains: Array<"Data Analysis" | "Agentic AI" | "ML" | "Full Stack">;
   githubUrl: string;
   image: string;
 }
 
-const projectFilters = ["All", "Agentic AI", "ML", "Full Stack"] as const;
+const projectFilters = ["All", "Data Analysis", "Agentic AI", "ML", "Full Stack"] as const;
 
 type ProjectFilter = (typeof projectFilters)[number];
 
@@ -25,63 +25,33 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Whatdapp Chat Analyzer",
       description:
-        "A full-featured e-commerce platform built with Next.js and Stripe integration for seamless payment processing.",
-      tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
-      domains: ["Full Stack"],
+        "A WhatsApp chat analysis tool that extracts insights, sentiment trends, activity patterns, and word frequency statistics from exported chat logs.",
+      tags: ["Python", "NLP", "Pandas", "Streamlit"],
+      domains: ["Data Analysis"],
       githubUrl: "https://github.com",
-      image: "🛍️",
+      image: "💬",
     },
     {
       id: 2,
-      title: "Task Management App",
+      title: "HireLens",
       description:
-        "Real-time collaborative task management application with drag-and-drop functionality and team collaboration features.",
-      tags: ["React", "Firebase", "Framer Motion", "Tailwind CSS"],
-      domains: ["Full Stack"],
+        "An AI-powered recruitment assistant that screens resumes, matches candidates to job descriptions, and generates structured interview questions using LLMs.",
+      tags: ["LangChain", "FastAPI", "React", "PostgreSQL"],
+      domains: ["Agentic AI", "Full Stack"],
       githubUrl: "https://github.com",
-      image: "✓",
+      image: "🔍",
     },
     {
       id: 3,
-      title: "Analytics Dashboard",
+      title: "Youtube Chatbot",
       description:
-        "Interactive dashboard displaying real-time analytics with charts, graphs, and data visualization components.",
-      tags: ["Next.js", "Chart.js", "TypeScript", "PostgreSQL"],
-      domains: ["ML", "Full Stack"],
-      githubUrl: "https://github.com",
-      image: "📊",
-    },
-    {
-      id: 4,
-      title: "Social Media App",
-      description:
-        "Full-stack social media application with user authentication, posts, comments, and real-time notifications.",
-      tags: ["React", "Node.js", "MongoDB", "Socket.io"],
-      domains: ["Full Stack"],
-      githubUrl: "https://github.com",
-      image: "👥",
-    },
-    {
-      id: 5,
-      title: "AI Chat Assistant",
-      description:
-        "Intelligent chat application powered by AI with natural language processing and context-aware responses.",
-      tags: ["Next.js", "OpenAI API", "TypeScript", "Tailwind CSS"],
+        "A RAG-based chatbot that ingests YouTube video transcripts and lets users ask questions, get summaries, and explore content through natural conversation.",
+      tags: ["LangChain", "RAG", "Next.js", "OpenAI API"],
       domains: ["Agentic AI", "Full Stack"],
       githubUrl: "https://github.com",
-      image: "🤖",
-    },
-    {
-      id: 6,
-      title: "Portfolio Generator",
-      description:
-        "Automated portfolio generator that creates beautiful portfolios from user data with customizable templates.",
-      tags: ["React", "Node.js", "Express", "PostgreSQL"],
-      domains: ["Full Stack"],
-      githubUrl: "https://github.com",
-      image: "🎨",
+      image: "▶️",
     },
   ];
 
@@ -161,7 +131,10 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <motion.div
+          key={activeFilter}
           variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {filteredProjects.map((project) => (
