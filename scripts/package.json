@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "update": "tsx update-portfolio.ts"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.1.1",
+    "openai": "^4.77.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

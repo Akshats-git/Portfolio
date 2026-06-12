@@ -1,0 +1,61 @@
+name: Sync Portfolio
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run — generate output but skip creating a PR"
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: scripts/package-lock.json
+
+      - name: Install script dependencies
+        run: npm install
+        working-directory: scripts
+
+      - name: Run portfolio sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.PORTFOLIO_GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+        run: npm run update
+        working-directory: scripts
+
+      - name: Create Pull Request
+        if: ${{ !inputs.dry_run }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.PORTFOLIO_GITHUB_TOKEN }}
+          commit-message: "feat: sync portfolio from GitHub repos"
+          branch: portfolio-sync
+          delete-branch: true
+          title: "Portfolio sync — ${{ github.run_id }}"
+          body: |
+            ## Auto-generated portfolio update
+
+            Triggered by: @${{ github.actor }}
+
+            **What changed:**
+            - `src/data/portfolio-data.ts` regenerated from repos tagged `portfolio-ready`
+            - Projects section updated with latest descriptions, tags, and domains
+            - Skills section updated based on repo languages and topics
+
+            Review the diff and merge when ready.
+          labels: automated
