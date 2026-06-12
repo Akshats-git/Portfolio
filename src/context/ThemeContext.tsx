@@ -11,11 +11,11 @@ interface Theme {
 }
 
 const defaultTheme: Theme = {
-  primary: "#60a5fa",
-  secondary: "#06b6d4",
-  accent: "#8b5cf6",
-  background: "#0f172a",
-  cardBg: "#1e293b",
+  primary: "#a855f7",
+  secondary: "#ec4899",
+  accent: "#06b6d4",
+  background: "#09090b",
+  cardBg: "#18181b",
 };
 
 interface ThemeContextType {

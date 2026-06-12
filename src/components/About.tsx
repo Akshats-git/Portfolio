@@ -131,11 +131,7 @@ const About = () => {
               <ul className="text-slate-400 text-sm space-y-2">
                 <li className="flex items-center gap-2">
                   <span style={{ color: theme.primary }}>✓</span>
-                  Dean&apos;s List
-                </li>
-                <li className="flex items-center gap-2">
-                  <span style={{ color: theme.primary }}>✓</span>
-                  Top GPA
+                  Reliance Foundation Scholar
                 </li>
               </ul>
             </div>
