@@ -41,6 +41,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PORTFOLIO_GITHUB_TOKEN }}
+          add-paths: src/data/portfolio-data.ts
           commit-message: "feat: sync portfolio from GitHub repos"
           branch: portfolio-sync
           delete-branch: true
