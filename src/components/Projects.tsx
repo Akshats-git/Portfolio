@@ -3,16 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  domains: Array<"Data Analysis" | "Agentic AI" | "ML" | "Full Stack">;
-  githubUrl: string;
-  image: string;
-}
+import { projects } from "@/data/portfolio-data";
 
 const projectFilters = ["All", "Data Analysis", "Agentic AI", "ML", "Full Stack"] as const;
 
@@ -21,39 +12,6 @@ type ProjectFilter = (typeof projectFilters)[number];
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
   const { theme } = useTheme();
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Whatdapp Chat Analyzer",
-      description:
-        "A WhatsApp chat analysis tool that extracts insights, sentiment trends, activity patterns, and word frequency statistics from exported chat logs.",
-      tags: ["Python", "NLP", "Pandas", "Streamlit"],
-      domains: ["Data Analysis"],
-      githubUrl: "https://github.com",
-      image: "💬",
-    },
-    {
-      id: 2,
-      title: "HireLens",
-      description:
-        "An AI-powered recruitment assistant that screens resumes, matches candidates to job descriptions, and generates structured interview questions using LLMs.",
-      tags: ["LangChain", "FastAPI", "React", "PostgreSQL"],
-      domains: ["Agentic AI", "Full Stack"],
-      githubUrl: "https://github.com",
-      image: "🔍",
-    },
-    {
-      id: 3,
-      title: "Youtube Chatbot",
-      description:
-        "A RAG-based chatbot that ingests YouTube video transcripts and lets users ask questions, get summaries, and explore content through natural conversation.",
-      tags: ["LangChain", "RAG", "Next.js", "OpenAI API"],
-      domains: ["Agentic AI", "Full Stack"],
-      githubUrl: "https://github.com",
-      image: "▶️",
-    },
-  ];
 
   const filteredProjects =
     activeFilter === "All"

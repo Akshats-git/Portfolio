@@ -2,41 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
-
-interface SkillCategory {
-  name: string;
-  skills: string[];
-}
+import { skillCategories } from "@/data/portfolio-data";
 
 const Skills = () => {
   const { theme } = useTheme();
-  const skillCategories: SkillCategory[] = [
-    {
-      name: "Frontend",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux"],
-    },
-    {
-      name: "Backend",
-      skills: ["Node.js", "Express", "Python", "FastAPI"],
-    },
-    {
-      name: "Databases",
-      skills: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL"],
-    },
-    {
-      name: "Tools & Platforms",
-      skills: ["Git", "Docker", "AWS", "Vercel", "GitHub Actions", "VS Code"],
-    },
-    {
-      name: "UI/UX & Design",
-      skills: ["Figma", "Shadcn UI", "Material-UI"],
-    },
-    {
-      name: "Agentic Frameworks",
-      skills: ["LangChain", "Hugging Face", "RAG Systems", "LangGraph"],
-    },
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
