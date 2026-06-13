@@ -2,43 +2,47 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme, colorsFromHue } from "@/context/ThemeContext";
+
+const PRESETS = [
+  { label: "Purple", hue: 270 },
+  { label: "Blue",   hue: 220 },
+  { label: "Teal",   hue: 175 },
+  { label: "Green",  hue: 140 },
+  { label: "Orange", hue: 25  },
+  { label: "Pink",   hue: 320 },
+];
 
 const ThemePanel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme, resetTheme } = useTheme();
+  const hue = theme.hue ?? 270;
 
-  const handleColorChange = (key: keyof typeof theme, value: string) => {
-    setTheme({
-      ...theme,
-      [key]: value,
-    });
+  const handleHue = (newHue: number) => {
+    setTheme({ ...theme, hue: newHue, ...colorsFromHue(newHue) });
   };
-
-  const colorOptions = [
-    { key: "primary", label: "Primary Color" },
-    { key: "secondary", label: "Secondary Color" },
-    { key: "accent", label: "Accent Color" },
-    { key: "background", label: "Background Color" },
-    { key: "cardBg", label: "Card Background" },
-  ];
 
   return (
     <>
-      {/* Floating Button */}
+      {/* Trigger button */}
       <motion.button
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-6 bottom-6 z-40 w-14 h-14 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center text-white text-xl"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+        onClick={() => setIsOpen(true)}
+        title="Customize theme"
+        className="fixed right-5 bottom-5 z-40 w-12 h-12 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
         style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
-        title="Open theme customizer"
       >
-        🎨
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="13.5" cy="6.5" r=".5" fill="white"/>
+          <circle cx="17.5" cy="10.5" r=".5" fill="white"/>
+          <circle cx="8.5"  cy="7.5"  r=".5" fill="white"/>
+          <circle cx="6.5"  cy="12.5" r=".5" fill="white"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+        </svg>
       </motion.button>
 
-      {/* Theme Panel */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -48,115 +52,111 @@ const ThemePanel = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30"
             />
 
             {/* Panel */}
             <motion.div
-              initial={{ opacity: 0, x: 400 }}
+              initial={{ opacity: 0, x: 320 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 400 }}
-              transition={{ duration: 0.3 }}
-              className="fixed right-0 top-0 h-full w-full sm:w-96 bg-slate-900 border-l border-slate-700 shadow-xl z-40 overflow-y-auto"
+              exit={{ opacity: 0, x: 320 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed right-0 top-0 h-full w-72 bg-slate-950 border-l border-slate-800 z-40 flex flex-col"
             >
               {/* Header */}
-              <div className="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-700 p-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <span>🎨</span> Theme Customizer
-                </h2>
+              <div className="px-5 py-4 border-b border-slate-800 flex items-center justify-between">
+                <span className="text-white font-semibold tracking-wide">Theme</span>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-500 hover:text-white transition-colors text-lg leading-none"
                 >
                   ✕
                 </button>
               </div>
 
-              {/* Content */}
-              <div className="p-6 space-y-6">
-                {/* Color Pickers */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-white">Colors</h3>
-                  {colorOptions.map((option) => (
-                    <motion.div
-                      key={option.key}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3"
-                    >
-                      <label className="flex-1 text-slate-300 text-sm">
-                        {option.label}
-                      </label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="color"
-                          value={theme[option.key as keyof typeof theme]}
-                          onChange={(e) =>
-                            handleColorChange(
-                              option.key as keyof typeof theme,
-                              e.target.value
-                            )
-                          }
-                          className="w-12 h-10 rounded cursor-pointer border-2 border-slate-700 transition-colors"
-                          style={{ borderColor: theme.primary }}
-                        />
-                        <input
-                          type="text"
-                          value={theme[option.key as keyof typeof theme]}
-                          onChange={(e) =>
-                            handleColorChange(
-                              option.key as keyof typeof theme,
-                              e.target.value
-                            )
-                          }
-                          className="w-24 px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded border border-slate-700 focus:outline-none transition-colors"
-                          style={{ borderColor: theme.primary }}
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+              {/* Body */}
+              <div className="flex-1 overflow-y-auto px-5 py-6 space-y-7">
 
-                {/* Preview */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-white">Preview</h3>
-                  <div className="space-y-2">
-                    <div
-                      className="w-full h-12 rounded-lg transition-all"
+                {/* Hue slider */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm text-slate-400">Accent color</span>
+                    <span
+                      className="w-5 h-5 rounded-full border-2 border-slate-700"
                       style={{ backgroundColor: theme.primary }}
-                      title="Primary color"
                     />
-                    <div className="flex gap-2">
-                      <div
-                        className="flex-1 h-8 rounded transition-all"
-                        style={{ backgroundColor: theme.secondary }}
-                        title="Secondary color"
-                      />
-                      <div
-                        className="flex-1 h-8 rounded transition-all"
-                        style={{ backgroundColor: theme.accent }}
-                        title="Accent color"
-                      />
-                    </div>
+                  </div>
+
+                  {/* Rainbow track + range input */}
+                  <div className="relative h-5 flex items-center">
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #f00, #ff0 16.6%, #0f0 33.3%, #0ff 50%, #00f 66.6%, #f0f 83.3%, #f00)",
+                      }}
+                    />
+                    <input
+                      type="range"
+                      min={0}
+                      max={359}
+                      value={hue}
+                      onChange={(e) => handleHue(Number(e.target.value))}
+                      className="hue-slider relative w-full"
+                    />
+                  </div>
+
+                  {/* Derived color swatches */}
+                  <div className="flex gap-2 mt-4">
+                    {[
+                      { color: theme.primary,   label: "Primary"   },
+                      { color: theme.secondary, label: "Secondary" },
+                      { color: theme.accent,    label: "Accent"    },
+                    ].map(({ color, label }) => (
+                      <div key={label} className="flex-1 text-center">
+                        <div className="h-8 rounded-md mb-1" style={{ backgroundColor: color }} />
+                        <span className="text-xs text-slate-500">{label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Reset Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={resetTheme}
-                  className="w-full py-2 px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors font-medium text-sm"
-                >
-                  Reset to Default
-                </motion.button>
-
-                {/* Info */}
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-xs text-slate-400 space-y-1">
-                  <p>✓ Colors are saved to your browser</p>
-                  <p>✓ They persist across sessions</p>
-                  <p>✓ Use hex values or the color picker</p>
+                {/* Preset swatches */}
+                <div>
+                  <span className="text-sm text-slate-400 block mb-3">Presets</span>
+                  <div className="grid grid-cols-3 gap-2">
+                    {PRESETS.map((preset) => {
+                      const c = colorsFromHue(preset.hue);
+                      const active = hue === preset.hue;
+                      return (
+                        <button
+                          key={preset.label}
+                          onClick={() => handleHue(preset.hue)}
+                          className={`rounded-lg p-3 text-xs font-medium text-white transition-all ${
+                            active
+                              ? "ring-2 ring-white ring-offset-2 ring-offset-slate-950 scale-105"
+                              : "opacity-80 hover:opacity-100 hover:scale-105"
+                          }`}
+                          style={{
+                            backgroundImage: `linear-gradient(135deg, ${c.primary}, ${c.secondary})`,
+                          }}
+                        >
+                          {preset.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
+              </div>
+
+              {/* Footer */}
+              <div className="px-5 py-4 border-t border-slate-800">
+                <button
+                  onClick={resetTheme}
+                  className="w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm transition-colors"
+                >
+                  Reset to default
+                </button>
               </div>
             </motion.div>
           </>
