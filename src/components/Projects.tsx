@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
@@ -8,6 +9,45 @@ import { projects } from "@/data/portfolio-data";
 const projectFilters = ["All", "Data Analysis", "Agentic AI", "ML", "Full Stack"] as const;
 
 type ProjectFilter = (typeof projectFilters)[number];
+
+import type { ProjectDomain } from "@/data/portfolio-data";
+
+const domainIcon: Record<string, React.ReactNode> = {
+  "ML": (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" /><path d="M12 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+      <path d="M4.93 4.93a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" /><path d="M19.07 15.07a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+      <path d="M2 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" /><path d="M18 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" />
+      <path d="M4.93 15.07a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" /><path d="M19.07 4.93a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+      <path d="m12 6 0 2M12 16l0 2M6 12l2 0M16 12l2 0" />
+    </svg>
+  ),
+  "Data Analysis": (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 3v18h18" /><path d="M7 16l4-4 4 4 4-6" />
+    </svg>
+  ),
+  "Full Stack": (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /><line x1="19" y1="12" x2="5" y2="12" />
+    </svg>
+  ),
+  "Agentic AI": (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" />
+      <path d="M12 7v4M8 15h.01M12 15h.01M16 15h.01" />
+    </svg>
+  ),
+};
+
+function ProjectIcon({ domains }: { domains: ProjectDomain[] }) {
+  const icon = domains.map(d => domainIcon[d]).find(Boolean) ?? (
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 9h6M9 12h6M9 15h4" />
+    </svg>
+  );
+  return <>{icon}</>;
+}
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
@@ -110,7 +150,9 @@ const Projects = () => {
               />
               <div className="relative bg-slate-800/90 border border-slate-700 rounded-lg p-6 h-full transition-colors" style={{ borderColor: theme.primary }}>
                 {/* Icon */}
-                <div className="text-5xl mb-4">{project.image}</div>
+                <div className="mb-4" style={{ color: theme.primary }}>
+                  <ProjectIcon domains={project.domains} />
+                </div>
 
                 {/* Content */}
                 <h3 className="text-xl font-bold text-slate-100 mb-3">

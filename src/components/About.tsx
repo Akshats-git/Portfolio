@@ -130,7 +130,9 @@ const About = () => {
               <h3 className="text-lg font-semibold text-slate-200 mb-3" style={{ color: theme.primary }}>Achievements</h3>
               <ul className="text-slate-400 text-sm space-y-2">
                 <li className="flex items-center gap-2">
-                  <span style={{ color: theme.primary }}>✓</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: theme.primary, flexShrink: 0 }} aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
                   Reliance Foundation Scholar
                 </li>
               </ul>
