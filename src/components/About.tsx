@@ -94,12 +94,50 @@ const About = () => {
             variants={itemVariants}
             className="flex flex-col gap-6"
           >
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 transition-colors" style={{ borderColor: theme.primary }}>
-              <h3 className="text-lg font-semibold text-slate-200 mb-3" style={{ color: theme.primary }}>Education</h3>
-              <p className="text-slate-300 font-medium mb-1">Bachelor of Science</p>
-              <p className="text-slate-400 text-sm mb-3">Computer Science</p>
-              <p className="text-slate-400 text-sm mb-1">University Name</p>
-              <p className="text-slate-500 text-xs">Graduated: 2022</p>
+            <div>
+              <h3 className="text-lg font-semibold mb-6" style={{ color: theme.primary }}>Education</h3>
+              <div className="relative">
+                {/* Vertical line */}
+                <div
+                  className="absolute left-[7px] top-2 bottom-2 w-px"
+                  style={{ background: `linear-gradient(to bottom, ${theme.primary}, ${theme.secondary}, ${theme.accent})` }}
+                />
+
+                <div className="space-y-8">
+                  {[
+                    { year: "2019", label: "10th Grade", school: "School Name", detail: "State Board" },
+                    { year: "2021", label: "12th Grade", school: "School Name", detail: "Science Stream" },
+                    { year: "2025", label: "B.Tech", school: "University Name", detail: "Computer Science & Engineering" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.15 }}
+                      className="flex gap-5 items-start"
+                    >
+                      {/* Dot */}
+                      <div className="relative z-10 mt-1 flex-shrink-0">
+                        <motion.div
+                          animate={{ boxShadow: [`0 0 0 0 ${theme.primary}55`, `0 0 0 6px ${theme.primary}00`] }}
+                          transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.4 }}
+                          className="w-3.5 h-3.5 rounded-full border-2"
+                          style={{ backgroundColor: theme.primary, borderColor: theme.primary }}
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div>
+                        <span className="text-xs font-mono" style={{ color: theme.secondary }}>{item.year}</span>
+                        <p className="text-slate-200 font-semibold leading-tight">{item.label}</p>
+                        <p className="text-slate-400 text-sm">{item.school}</p>
+                        <p className="text-slate-500 text-xs mt-0.5">{item.detail}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 transition-colors" style={{ borderColor: theme.primary }}>
