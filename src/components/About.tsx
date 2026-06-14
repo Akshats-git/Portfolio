@@ -28,13 +28,6 @@ const About = () => {
     { year: "2025", label: "B.Tech", school: "University Name", detail: "Computer Science & Engineering" },
   ];
 
-  const competencies = [
-    "Full-stack web development",
-    "React & Next.js expertise",
-    "UI/UX design and implementation",
-    "Cloud deployment & DevOps",
-  ];
-
   const achievements = [
     { title: "Reliance Foundation Scholar", issuer: "Reliance Foundation" },
   ];
@@ -67,11 +60,11 @@ const About = () => {
           />
         </motion.div>
 
-        {/* 4-column grid */}
+        {/* grid: bio spans 2 cols, education and achievements 1 each */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 items-start">
 
-          {/* Col 1 — Bio */}
-          <motion.div variants={itemVariants} className="space-y-5">
+          {/* Col 1+2 — Bio */}
+          <motion.div variants={itemVariants} className="space-y-5 lg:col-span-2">
             <p className="text-lg text-slate-300 leading-relaxed">
               I&apos;m a passionate full-stack developer with a keen eye for design
               and a love for solving complex problems. With experience in
@@ -180,18 +173,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Col 4 — Core Competencies */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-lg font-semibold text-slate-200 mb-7">Core Competencies</h3>
-            <ul className="space-y-3 text-slate-400">
-              {competencies.map((c) => (
-                <li key={c} className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: theme.primary }} />
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
 
         </div>
       </motion.div>
