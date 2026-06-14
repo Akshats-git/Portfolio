@@ -67,8 +67,8 @@ const About = () => {
           />
         </motion.div>
 
-        {/* 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 items-start">
+        {/* 4-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 items-start">
 
           {/* Col 1 — Bio */}
           <motion.div variants={itemVariants} className="space-y-5">
@@ -135,65 +135,62 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Col 3 — Competencies + Achievements */}
-          <motion.div variants={itemVariants} className="space-y-10">
-            {/* Core Competencies */}
-            <div>
-              <h3 className="text-lg font-semibold text-slate-200 mb-5">Core Competencies</h3>
-              <ul className="space-y-3 text-slate-400">
-                {competencies.map((c) => (
-                  <li key={c} className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: theme.primary }} />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Achievements */}
-            <div>
-              <h3 className="text-lg font-semibold text-slate-200 mb-5">Achievements</h3>
-              <div className="space-y-4">
-                {achievements.map((ach) => (
-                  <div key={ach.title} className="flex items-center gap-4">
-                    <div
-                      className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{
-                        background: `linear-gradient(135deg, ${theme.primary}22, ${theme.secondary}22)`,
-                        border: `1px solid ${theme.primary}44`,
-                      }}
+          {/* Col 3 — Achievements */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold text-slate-200 mb-7">Achievements</h3>
+            <div className="space-y-4">
+              {achievements.map((ach) => (
+                <div key={ach.title} className="flex items-start gap-4">
+                  <div
+                    className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center mt-0.5"
+                    style={{
+                      background: `linear-gradient(135deg, ${theme.primary}22, ${theme.secondary}22)`,
+                      border: `1px solid ${theme.primary}44`,
+                    }}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ color: theme.primary }}
+                      aria-hidden="true"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="18"
-                        height="18"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        style={{ color: theme.primary }}
-                        aria-hidden="true"
-                      >
-                        <path d="M6 9H3V4h18v5h-3" />
-                        <path d="M12 15c-3.314 0-6-2.686-6-6V4h12v5c0 3.314-2.686 6-6 6z" />
-                        <path d="M12 15v4" />
-                        <path d="M8 19h8" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p
-                        className="font-semibold text-sm bg-clip-text text-transparent"
-                        style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
-                      >
-                        {ach.title}
-                      </p>
-                      <p className="text-slate-500 text-xs mt-0.5">{ach.issuer}</p>
-                    </div>
+                      <path d="M6 9H3V4h18v5h-3" />
+                      <path d="M12 15c-3.314 0-6-2.686-6-6V4h12v5c0 3.314-2.686 6-6 6z" />
+                      <path d="M12 15v4" />
+                      <path d="M8 19h8" />
+                    </svg>
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <p
+                      className="font-semibold text-sm bg-clip-text text-transparent"
+                      style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
+                    >
+                      {ach.title}
+                    </p>
+                    <p className="text-slate-500 text-xs mt-0.5">{ach.issuer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </motion.div>
+
+          {/* Col 4 — Core Competencies */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold text-slate-200 mb-7">Core Competencies</h3>
+            <ul className="space-y-3 text-slate-400">
+              {competencies.map((c) => (
+                <li key={c} className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: theme.primary }} />
+                  {c}
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
         </div>
