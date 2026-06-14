@@ -89,35 +89,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right - Stats */}
+          {/* Right - Cards */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 gap-6"
+            className="flex flex-col gap-6"
           >
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
-                style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
-              >
-                50+
-              </motion.div>
-              <p className="text-slate-400">Projects Completed</p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center transition-colors" style={{ borderColor: theme.primary }}>
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-                className="text-4xl font-bold bg-clip-text text-transparent mb-2"
-                style={{ backgroundImage: `linear-gradient(to right, ${theme.secondary}, ${theme.accent})` }}
-              >
-                5+
-              </motion.div>
-              <p className="text-slate-400">Years Experience</p>
-            </div>
-
             <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 transition-colors" style={{ borderColor: theme.primary }}>
               <h3 className="text-lg font-semibold text-slate-200 mb-3" style={{ color: theme.primary }}>Education</h3>
               <p className="text-slate-300 font-medium mb-1">Bachelor of Science</p>
