@@ -119,5 +119,29 @@ export const skillCategories: SkillCategory[] = [
       "RAG Systems",
       "LangGraph"
     ]
+  },
+  {
+    "name": "Data Science",
+    "skills": [
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Jupyter",
+      "Scikit-learn",
+      "SQL Analytics"
+    ]
+  },
+  {
+    "name": "Machine Learning",
+    "skills": [
+      "TensorFlow",
+      "PyTorch",
+      "Keras",
+      "XGBoost",
+      "Computer Vision",
+      "NLP",
+      "Model Deployment"
+    ]
   }
 ];
