@@ -23,9 +23,9 @@ const About = () => {
   };
 
   const education = [
-    { year: "2019", label: "10th Grade", school: "School Name", detail: "State Board" },
-    { year: "2021", label: "12th Grade", school: "School Name", detail: "Science Stream" },
-    { year: "2025", label: "B.Tech", school: "University Name", detail: "Computer Science & Engineering" },
+    { year: "2020", label: "10th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ICSE Board — 97%" },
+    { year: "2022", label: "12th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ISC Board — 95.5%" },
+    { year: "2026", label: "B.Tech DSAI", school: "Indian Institute of Technology Bhilai", detail: "CGPA 7.86" },
   ];
 
   const achievements = [
