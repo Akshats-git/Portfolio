@@ -113,14 +113,11 @@ async function generateUpdatedSkills(
     ]),
   ];
 
-  const existingSkills = {
-    Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux"],
-    Backend: ["Node.js", "Express", "Python", "FastAPI"],
-    Databases: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL"],
-    "Tools & Platforms": ["Git", "Docker", "AWS", "Vercel", "GitHub Actions", "VS Code"],
-    "UI/UX & Design": ["Figma", "Shadcn UI", "Material-UI"],
-    "Agentic Frameworks": ["LangChain", "Hugging Face", "RAG Systems", "LangGraph"],
-  };
+  const existingCategories = parseExistingSkillCategories();
+  const existingSkills = Object.fromEntries(
+    existingCategories.map((c) => [c.name, c.skills])
+  );
+  const categoryNames = existingCategories.map((c) => c.name);
 
   const prompt = `You are updating a developer portfolio's skills section.
 
@@ -131,21 +128,16 @@ Current skills by category:
 ${JSON.stringify(existingSkills, null, 2)}
 
 Rules:
-1. Keep ALL existing skills exactly as written
+1. Keep ALL existing categories and ALL existing skills exactly as written — do not remove or rename any
 2. Add new technologies from the repo list that fit naturally into existing categories
 3. Use proper display names (e.g. "OpenAI API" not "openai-api", "LangChain" not "langchain")
 4. Skip overly generic terms (e.g. "programming", "software")
-5. Do not create new categories — only use the six existing ones
+5. Do not create new categories — only use the existing ones listed above
 
 Return a JSON object:
 {
   "skillCategories": [
-    { "name": "Frontend", "skills": [...] },
-    { "name": "Backend", "skills": [...] },
-    { "name": "Databases", "skills": [...] },
-    { "name": "Tools & Platforms", "skills": [...] },
-    { "name": "UI/UX & Design", "skills": [...] },
-    { "name": "Agentic Frameworks", "skills": [...] }
+${categoryNames.map((n) => `    { "name": "${n}", "skills": [...] }`).join(",\n")}
   ]
 }`;
 
@@ -158,6 +150,30 @@ Return a JSON object:
 
   const parsed = JSON.parse(res.choices[0].message.content!);
   return parsed.skillCategories as SkillCategory[];
+}
+
+// ── Parse existing data ─────────────────────────────────────────────────────
+
+function parseExistingSkillCategories(): SkillCategory[] {
+  try {
+    const content = fs.readFileSync(DATA_FILE, "utf-8");
+    const match = content.match(
+      /export const skillCategories:\s*SkillCategory\[\]\s*=\s*(\[[\s\S]*?\n\]);/
+    );
+    if (match) {
+      return new Function(`return ${match[1]}`)() as SkillCategory[];
+    }
+  } catch {
+    // file doesn't exist yet or can't parse — fall back to defaults
+  }
+  return [
+    { name: "Frontend", skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux"] },
+    { name: "Backend", skills: ["Node.js", "Express", "Python", "FastAPI"] },
+    { name: "Databases", skills: ["PostgreSQL", "MongoDB", "Firebase", "Redis", "MySQL"] },
+    { name: "Tools & Platforms", skills: ["Git", "Docker", "AWS", "Vercel", "GitHub Actions", "VS Code"] },
+    { name: "UI/UX & Design", skills: ["Figma", "Shadcn UI", "Material-UI"] },
+    { name: "Agentic Frameworks", skills: ["LangChain", "Hugging Face", "RAG Systems", "LangGraph"] },
+  ];
 }
 
 // ── File generation ─────────────────────────────────────────────────────────
