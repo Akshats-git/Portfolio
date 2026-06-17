@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
-import { platforms, sheets } from "@/data/dsa-data";
+import { sheets } from "@/data/dsa-data";
 import type { PlatformStat, SheetProgress } from "@/data/dsa-data";
 
 const containerVariants = {
@@ -69,6 +70,25 @@ function CircularProgress({
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
         {children}
+      </div>
+    </div>
+  );
+}
+
+function PlatformCardSkeleton() {
+  return (
+    <div className="rounded-2xl border border-slate-700/30 p-5 h-48 animate-pulse bg-slate-800/30">
+      <div className="flex justify-between mb-4">
+        <div>
+          <div className="h-5 w-24 bg-slate-700/50 rounded mb-2" />
+          <div className="h-3 w-16 bg-slate-700/30 rounded" />
+        </div>
+        <div className="h-14 w-14 bg-slate-700/30 rounded-full" />
+      </div>
+      <div className="space-y-3">
+        <div className="h-3 w-full bg-slate-700/30 rounded" />
+        <div className="h-3 w-3/4 bg-slate-700/30 rounded" />
+        <div className="h-3 w-1/2 bg-slate-700/30 rounded" />
       </div>
     </div>
   );
@@ -192,6 +212,13 @@ function PlatformCard({ platform, theme }: { platform: PlatformStat; theme: { pr
             <div className="flex items-center justify-between">
               <span className="text-slate-400 text-sm">Score</span>
               <span className="text-slate-200 font-semibold text-sm">{platform.score}</span>
+            </div>
+          )}
+
+          {platform.streak !== undefined && platform.streak > 0 && (
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400 text-sm">Longest Streak</span>
+              <span className="text-slate-200 font-semibold text-sm">{platform.streak} days</span>
             </div>
           )}
         </div>
@@ -336,7 +363,13 @@ function SheetCard({ sheet, theme }: { sheet: SheetProgress; theme: { primary: s
   );
 }
 
-function AggregateStats({ theme }: { theme: { primary: string; secondary: string; accent: string } }) {
+function AggregateStats({
+  platforms,
+  theme,
+}: {
+  platforms: PlatformStat[];
+  theme: { primary: string; secondary: string; accent: string };
+}) {
   const totalSolved = platforms.reduce((sum, p) => sum + p.problemsSolved, 0);
   const totalContests = platforms.reduce((sum, p) => sum + (p.contestsGiven || 0), 0);
   const totalSheetSolved = sheets.reduce((sum, s) => sum + s.solved, 0);
@@ -393,6 +426,18 @@ function AggregateStats({ theme }: { theme: { primary: string; secondary: string
 
 const DSAProfile = () => {
   const { theme } = useTheme();
+  const [platforms, setPlatforms] = useState<PlatformStat[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/dsa-stats")
+      .then((res) => res.json())
+      .then((data) => {
+        setPlatforms(data.platforms);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <section
@@ -429,21 +474,31 @@ const DSAProfile = () => {
           </p>
         </motion.div>
 
-        <AggregateStats theme={theme} />
+        {!loading && platforms.length > 0 && (
+          <AggregateStats platforms={platforms} theme={theme} />
+        )}
 
         <motion.div variants={itemVariants} className="mb-6">
           <h3 className="text-xl font-bold text-slate-200 mb-1">Platforms</h3>
           <p className="text-slate-500 text-sm">Click any card to visit the profile</p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14"
-        >
-          {platforms.map((p) => (
-            <PlatformCard key={p.name} platform={p} theme={theme} />
-          ))}
-        </motion.div>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
+            {[0, 1, 2, 3].map((i) => (
+              <PlatformCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14"
+          >
+            {platforms.map((p) => (
+              <PlatformCard key={p.name} platform={p} theme={theme} />
+            ))}
+          </motion.div>
+        )}
 
         <motion.div variants={itemVariants} className="mb-6">
           <h3 className="text-xl font-bold text-slate-200 mb-1">

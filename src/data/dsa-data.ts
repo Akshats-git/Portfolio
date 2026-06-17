@@ -10,6 +10,7 @@ export interface PlatformStat {
   contestsGiven?: number;
   stars?: number;
   score?: number;
+  streak?: number;
   breakdown?: { label: string; count: number; color: string }[];
 }
 
@@ -20,51 +21,6 @@ export interface SheetProgress {
   solved: number;
   topics: { name: string; solved: number; total: number }[];
 }
-
-export const platforms: PlatformStat[] = [
-  {
-    name: "LeetCode",
-    handle: "your_handle",
-    profileUrl: "https://leetcode.com/u/your_handle",
-    rating: 1650,
-    contestsGiven: 25,
-    problemsSolved: 450,
-    totalProblems: 3400,
-    breakdown: [
-      { label: "Easy", count: 150, color: "#22c55e" },
-      { label: "Medium", count: 230, color: "#f59e0b" },
-      { label: "Hard", count: 70, color: "#ef4444" },
-    ],
-  },
-  {
-    name: "Codeforces",
-    handle: "your_handle",
-    profileUrl: "https://codeforces.com/profile/your_handle",
-    rating: 1450,
-    maxRating: 1520,
-    rank: "Specialist",
-    problemsSolved: 350,
-    contestsGiven: 40,
-  },
-  {
-    name: "CodeChef",
-    handle: "your_handle",
-    profileUrl: "https://www.codechef.com/users/your_handle",
-    rating: 1750,
-    maxRating: 1800,
-    stars: 4,
-    problemsSolved: 200,
-    contestsGiven: 30,
-  },
-  {
-    name: "GeeksforGeeks",
-    handle: "your_handle",
-    profileUrl: "https://www.geeksforgeeks.org/user/your_handle",
-    problemsSolved: 300,
-    score: 750,
-    rank: "Institute Rank 5",
-  },
-];
 
 export const sheets: SheetProgress[] = [
   {
