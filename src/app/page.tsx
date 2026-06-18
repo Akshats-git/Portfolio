@@ -12,10 +12,10 @@ export default function Home() {
     <main className="overflow-hidden">
       <Hero />
       <About />
-      <Projects />
-      <Blogs />
       <Skills />
+      <Projects />
       <DSAProfile />
+      <Blogs />
       <Contact />
       <Footer />
     </main>
