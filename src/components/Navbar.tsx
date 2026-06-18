@@ -10,13 +10,13 @@ const Navbar = () => {
   const { theme } = useTheme();
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Blogs", href: "#blogs" },
-    { label: "Skills", href: "#skills" },
-    { label: "DSA & CP", href: "#dsa" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Blogs", href: "/#blogs" },
+    { label: "Skills", href: "/#skills" },
+    { label: "DSA & CP", href: "/#dsa" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
