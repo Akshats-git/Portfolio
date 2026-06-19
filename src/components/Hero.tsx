@@ -42,15 +42,15 @@ const Hero = () => {
           {/* Greeting */}
           <motion.div variants={itemVariants} className="space-y-3">
             <p className="font-semibold text-lg" style={{ color: theme.primary }}>
-              Welcome to my portfolio
+              Hi, I&apos;m Akshat
             </p>
             <h1 className="text-5xl sm:text-7xl font-bold">
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary}, ${theme.accent})` }}>
-                Creative Developer
+                Full-Stack Developer
               </span>
             </h1>
             <h2 className="text-3xl sm:text-5xl font-bold text-slate-300">
-              & Digital Creator
+              & AI Enthusiast
             </h2>
           </motion.div>
 
@@ -59,9 +59,10 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg text-slate-400 leading-relaxed max-w-2xl"
           >
-            I craft modern, responsive web applications with cutting-edge
-            technologies. Specializing in Next.js, React, and full-stack
-            development with a passion for clean code and intuitive design.
+            B.Tech DSAI student at IIT Bhilai and Reliance Foundation Scholar.
+            I build full-stack applications and AI-powered tools — from agentic
+            chatbots to ML-driven systems — with a strong foundation in DSA and
+            competitive programming.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -103,16 +104,26 @@ const Hero = () => {
               </div>
               <pre className="text-sm text-slate-300 font-mono">
                 <span className="text-pink-400">const</span>{" "}
-                <span style={{ color: theme.secondary }}>developer</span> = {"{"}
+                <span style={{ color: theme.secondary }}>akshat</span> = {"{"}
                 <br />
                 <span className="ml-4">
-                  <span className="text-slate-500">{`// Building amazing experiences`}</span>
+                  <span style={{ color: theme.primary }}>stack</span>:
+                  <span className="text-green-400">
+                    {` ["React", "Next.js", "FastAPI"]`}
+                  </span>
                 </span>
                 <br />
                 <span className="ml-4">
-                  <span style={{ color: theme.primary }}>skills</span>:
+                  <span style={{ color: theme.primary }}>ai</span>:
                   <span className="text-green-400">
-                    {`["React", "Next.js", "TypeScript"]`}
+                    {` ["LangChain", "RAG", "PyTorch"]`}
+                  </span>
+                </span>
+                <br />
+                <span className="ml-4">
+                  <span style={{ color: theme.primary }}>dsa</span>:
+                  <span className="text-green-400">
+                    {` "356 problems solved"`}
                   </span>
                 </span>
                 <br />

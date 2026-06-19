@@ -36,7 +36,7 @@ const Footer = () => {
         </svg>
       ),
       label: "GitHub",
-      href: "https://github.com",
+      href: "https://github.com/Akshats-git",
     },
     {
       id: "email",
@@ -47,7 +47,7 @@ const Footer = () => {
         </svg>
       ),
       label: "Email",
-      href: "mailto:contact@example.com",
+      href: "mailto:akshatgupta1204@gmail.com",
     },
   ];
 
@@ -80,8 +80,8 @@ const Footer = () => {
               Akshat
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              A passionate full-stack developer crafting modern web experiences
-              with clean code and beautiful design.
+              B.Tech DSAI at IIT Bhilai. Building full-stack applications
+              and AI-powered tools with clean code and thoughtful design.
             </p>
           </motion.div>
 

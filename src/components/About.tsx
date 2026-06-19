@@ -66,16 +66,17 @@ const About = () => {
           {/* Col 1+2 — Bio */}
           <motion.div variants={itemVariants} className="space-y-5 lg:col-span-2">
             <p className="text-lg text-slate-300 leading-relaxed">
-              I&apos;m a passionate full-stack developer with a keen eye for design
-              and a love for solving complex problems. With experience in
-              building scalable web applications, I focus on creating elegant
-              solutions that users love.
+              I&apos;m a B.Tech student in Data Science &amp; Artificial Intelligence
+              at IIT Bhilai and a Reliance Foundation Scholar. I enjoy building
+              full-stack applications that integrate AI — from agentic chatbots
+              and resume-matching systems to data analysis dashboards.
             </p>
             <p className="text-lg text-slate-300 leading-relaxed">
-              My journey in tech began with a curiosity about how things work.
-              Today, I transform ideas into reality using modern technologies
-              and best practices. I&apos;m constantly learning and adapting to new
-              challenges.
+              Beyond development, I&apos;m an active competitive programmer and
+              problem solver with 356+ problems solved on Striver&apos;s A2Z sheet.
+              I work across the stack with React, Next.js, FastAPI, and Python,
+              and leverage frameworks like LangChain and PyTorch to build
+              intelligent systems.
             </p>
           </motion.div>
 
