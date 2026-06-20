@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Coursework from "@/components/Coursework";
 import Projects from "@/components/Projects";
 import Blogs from "@/components/Blogs";
 import Skills from "@/components/Skills";
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="overflow-hidden">
       <Hero />
       <About />
+      <Coursework />
       <Skills />
       <Projects />
       <DSAProfile />
