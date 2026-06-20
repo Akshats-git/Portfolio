@@ -188,22 +188,22 @@ const Coursework = () => {
                 }}
                 className="cursor-default rounded-full px-5 py-2.5 font-medium text-slate-200 border backdrop-blur-sm transition-shadow duration-300 select-none"
                 style={{
-                  borderColor: `${color.border}35`,
-                  backgroundColor: `${color.bg}10`,
+                  borderColor: `${color.border}99`,
+                  backgroundColor: `${color.bg}30`,
                   rotate: `${rotation}deg`,
                   scale,
                   fontSize: `${0.85 + seededRandom(globalIndex * 11 + 3) * 0.2}rem`,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
-                  el.style.borderColor = `${color.border}90`;
-                  el.style.backgroundColor = `${color.bg}20`;
-                  el.style.boxShadow = `0 0 25px ${color.border}25, 0 4px 20px ${color.bg}15`;
+                  el.style.borderColor = `${color.border}ee`;
+                  el.style.backgroundColor = `${color.bg}45`;
+                  el.style.boxShadow = `0 0 30px ${color.border}40, 0 4px 25px ${color.bg}30`;
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
-                  el.style.borderColor = `${color.border}35`;
-                  el.style.backgroundColor = `${color.bg}10`;
+                  el.style.borderColor = `${color.border}99`;
+                  el.style.backgroundColor = `${color.bg}30`;
                   el.style.boxShadow = "none";
                 }}
               >
