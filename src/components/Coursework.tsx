@@ -108,7 +108,7 @@ const Coursework = () => {
               }}
             >
               <h3
-                className="text-sm font-semibold uppercase tracking-wider mb-4"
+                className="text-base font-semibold uppercase tracking-wider mb-4"
                 style={{ color: theme.primary }}
               >
                 {group.category}
@@ -121,7 +121,7 @@ const Coursework = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: gi * 0.08 + ci * 0.05 }}
-                    className="flex items-start gap-2.5 text-sm text-slate-300"
+                    className="flex items-start gap-2.5 text-base text-slate-300"
                   >
                     <span
                       className="mt-1.5 h-1.5 w-1.5 rounded-full flex-shrink-0"
