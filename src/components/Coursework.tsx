@@ -29,9 +29,9 @@ const coursework = [
   {
     category: "Data Science",
     courses: [
-      "Data Mining",
-      "Statistical Learning",
-      "Data Visualization",
+      "Mathematical Foundations for Data Science",
+      "Information Security",
+      "Data Analytics & Visualization",
     ],
   },
   {
