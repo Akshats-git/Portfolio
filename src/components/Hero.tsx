@@ -103,31 +103,36 @@ const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-green-500" />
               </div>
               <pre className="text-sm text-slate-300 font-mono">
-                <span className="text-pink-400">const</span>{" "}
-                <span style={{ color: theme.secondary }}>akshat</span> = {"{"}
+                <span className="text-pink-400">function</span>{" "}
+                <span style={{ color: theme.secondary }}>welcome</span>
+                <span className="text-slate-300">() {"{"}</span>
                 <br />
                 <span className="ml-4">
-                  <span style={{ color: theme.primary }}>stack</span>:
-                  <span className="text-green-400">
-                    {` ["React", "Next.js", "FastAPI"]`}
-                  </span>
+                  <span className="text-pink-400">if</span>
+                  <span className="text-slate-300"> (</span>
+                  <span style={{ color: theme.primary }}>you</span>
+                  <span className="text-slate-300">.</span>
+                  <span style={{ color: theme.primary }}>madeItHere</span>
+                  <span className="text-slate-300">) {"{"}</span>
+                </span>
+                <br />
+                <span className="ml-8">
+                  <span className="text-pink-400">return</span>{" "}
+                  <span className="text-green-400">{'"hire me"'}</span>
+                  <span className="text-slate-300">;</span>
                 </span>
                 <br />
                 <span className="ml-4">
-                  <span style={{ color: theme.primary }}>ai</span>:
-                  <span className="text-green-400">
-                    {` ["LangChain", "RAG", "PyTorch"]`}
-                  </span>
+                  <span className="text-slate-300">{"}"}</span>
                 </span>
                 <br />
                 <span className="ml-4">
-                  <span style={{ color: theme.primary }}>dsa</span>:
-                  <span className="text-green-400">
-                    {` "356 problems solved"`}
-                  </span>
+                  <span className="text-pink-400">return</span>{" "}
+                  <span className="text-green-400">{'"scroll down"'}</span>
+                  <span className="text-slate-300">;</span>
                 </span>
                 <br />
-                {"}"}
+                <span className="text-slate-300">{"}"}</span>
               </pre>
             </div>
           </motion.div>
