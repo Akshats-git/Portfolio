@@ -29,7 +29,6 @@ const coursework = [
   {
     category: "Data Science",
     courses: [
-      "Probability & Statistics",
       "Data Mining",
       "Statistical Learning",
       "Data Visualization",
@@ -41,7 +40,8 @@ const coursework = [
       "Linear Algebra",
       "Discrete Mathematics",
       "Calculus & Differential Equations",
-      "Optimization Techniques",
+      "Real Analysis",
+      "Probability & Statistics",
     ],
   },
 ];
