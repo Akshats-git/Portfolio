@@ -8,11 +8,12 @@ const coursework = [
     category: "Computer Science",
     courses: [
       "Data Structures & Algorithms",
-      "Object Oriented Programming",
       "Database Management Systems",
       "Operating Systems",
       "Computer Networks",
-      "Software Engineering",
+      "Information Security",
+      "Formal Verification",
+      "Computer Organization & Architecture",
     ],
   },
   {
