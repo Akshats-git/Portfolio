@@ -26,7 +26,7 @@ const Footer = () => {
         </svg>
       ),
       label: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/akshat-gupta-b3ab332a2/",
     },
     {
       id: "github",
