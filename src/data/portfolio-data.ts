@@ -83,7 +83,6 @@ export const skillCategories: SkillCategory[] = [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
-      "Framer Motion",
       "Redux",
       "JavaScript",
       "CSS",
@@ -117,8 +116,7 @@ export const skillCategories: SkillCategory[] = [
       "AWS",
       "Vercel",
       "GitHub Actions",
-      "VS Code",
-      "Shell"
+      "VS Code"
     ]
   },
   {
@@ -146,8 +144,7 @@ export const skillCategories: SkillCategory[] = [
       "Matplotlib",
       "Seaborn",
       "Jupyter",
-      "Scikit-learn",
-      "SQL Analytics"
+      "Scikit-learn"
     ]
   },
   {
@@ -155,7 +152,6 @@ export const skillCategories: SkillCategory[] = [
     "skills": [
       "TensorFlow",
       "PyTorch",
-      "Keras",
       "XGBoost",
       "Computer Vision",
       "NLP",
