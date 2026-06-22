@@ -32,6 +32,7 @@ const coursework = [
       "Mathematical Foundations for Data Science",
       "Information Security",
       "Data Analytics & Visualization",
+      "Big Data Analytics",
     ],
   },
   {
