@@ -256,7 +256,7 @@ const Contact = () => {
                 required
                 className={inputClass("subject")}
                 style={inputStyle("subject")}
-                placeholder="Project inquiry"
+                placeholder="Subject"
               />
             </div>
 
@@ -275,7 +275,7 @@ const Contact = () => {
                 rows={6}
                 className={`${inputClass("message")} resize-none`}
                 style={inputStyle("message")}
-                placeholder="Tell me about your project..."
+                placeholder="Your message..."
               />
             </div>
 
