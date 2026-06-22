@@ -105,7 +105,8 @@ export const skillCategories: SkillCategory[] = [
       "MongoDB",
       "Firebase",
       "Redis",
-      "MySQL"
+      "MySQL",
+      "Supabase"
     ]
   },
   {
