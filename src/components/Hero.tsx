@@ -59,10 +59,9 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg text-slate-400 leading-relaxed max-w-2xl"
           >
-            B.Tech DSAI student at IIT Bhilai and Reliance Foundation Scholar.
-            I build full-stack applications and AI-powered tools — from agentic
-            chatbots to ML-driven systems — with a strong foundation in DSA and
-            competitive programming.
+            B.Tech DSAI student at IIT Bhilai. I like building things
+            — web apps, chatbots, ML projects, whatever sounds fun. Also
+            into competitive programming and solving DSA problems.
           </motion.p>
 
           {/* CTA Buttons */}
