@@ -363,67 +363,6 @@ function SheetCard({ sheet, theme }: { sheet: SheetProgress; theme: { primary: s
   );
 }
 
-function AggregateStats({
-  platforms,
-  theme,
-}: {
-  platforms: PlatformStat[];
-  theme: { primary: string; secondary: string; accent: string };
-}) {
-  const totalSolved = platforms.reduce((sum, p) => sum + p.problemsSolved, 0);
-  const totalContests = platforms.reduce((sum, p) => sum + (p.contestsGiven || 0), 0);
-  const totalSheetSolved = sheets.reduce((sum, s) => sum + s.solved, 0);
-  const totalSheetProblems = sheets.reduce((sum, s) => sum + s.totalProblems, 0);
-
-  const stats = [
-    { label: "Problems Solved", value: totalSolved, suffix: "+" },
-    { label: "Contests Given", value: totalContests, suffix: "+" },
-    { label: "Sheet Progress", value: totalSheetSolved, suffix: `/${totalSheetProblems}` },
-    { label: "Active Platforms", value: platforms.length, suffix: "" },
-  ];
-
-  return (
-    <motion.div
-      variants={containerVariants}
-      className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
-    >
-      {stats.map((stat, i) => (
-        <motion.div
-          key={stat.label}
-          variants={itemVariants}
-          className="relative rounded-2xl border border-slate-700/40 p-5 text-center overflow-hidden"
-          style={{
-            background: `linear-gradient(135deg, ${theme.primary}08, ${theme.secondary}05, rgba(15,15,20,0.6))`,
-          }}
-        >
-          <motion.div
-            className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
-            style={{
-              background: `radial-gradient(circle at 50% 50%, ${theme.primary}10, transparent 70%)`,
-            }}
-          />
-          <motion.p
-            className="text-3xl sm:text-4xl font-black mb-1"
-            style={{
-              backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 + i * 0.1, type: "spring" }}
-          >
-            {stat.value}
-            <span className="text-lg font-semibold">{stat.suffix}</span>
-          </motion.p>
-          <p className="text-slate-400 text-sm font-medium">{stat.label}</p>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
 const DSAProfile = () => {
   const { theme } = useTheme();
   const [platforms, setPlatforms] = useState<PlatformStat[]>([]);
@@ -469,14 +408,9 @@ const DSAProfile = () => {
             }}
           />
           <p className="text-slate-400 mt-4 max-w-2xl">
-            I solve problems regularly across several platforms, mostly on
-            data structures, algorithms, and competitive programming.
+            I enjoy solving coding problems very much. The primary language I use is Java. 
           </p>
         </motion.div>
-
-        {!loading && platforms.length > 0 && (
-          <AggregateStats platforms={platforms} theme={theme} />
-        )}
 
         <motion.div variants={itemVariants} className="mb-6">
           <h3 className="text-xl font-bold text-slate-200 mb-1">Platforms</h3>
