@@ -128,7 +128,7 @@ const Contact = () => {
           </h2>
           <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
             Have a project in mind, or just want to say hello?
-            <br className="hidden sm:block" /> My inbox is always open.
+            <br className="hidden sm:block" /> Feel free to reach out.
           </p>
           <div
             className="h-px w-32 mx-auto mt-8 opacity-60"

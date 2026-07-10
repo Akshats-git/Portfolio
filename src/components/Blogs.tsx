@@ -54,7 +54,7 @@ const Blogs = () => {
             Blog Posts
           </h2>
           <p className="text-slate-400 text-lg">
-            Insights and articles about web development, machine learning, and technology
+            Articles on web development, machine learning, and the things I build.
           </p>
         </motion.div>
 

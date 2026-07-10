@@ -4,15 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTheme, colorsFromHue } from "@/context/ThemeContext";
 
-const PRESETS = [
-  { label: "Purple", hue: 270 },
-  { label: "Blue",   hue: 220 },
-  { label: "Teal",   hue: 175 },
-  { label: "Green",  hue: 140 },
-  { label: "Orange", hue: 25  },
-  { label: "Pink",   hue: 320 },
-];
-
 const ThemePanel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme, resetTheme } = useTheme();
@@ -79,10 +70,10 @@ const ThemePanel = () => {
               {/* Body */}
               <div className="flex-1 overflow-y-auto px-5 py-6 space-y-7">
 
-                {/* Hue slider */}
+                {/* Color slider */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-slate-400">Accent color</span>
+                    <span className="text-sm text-slate-400">Color</span>
                     <span
                       className="w-5 h-5 rounded-full border-2 border-slate-700"
                       style={{ backgroundColor: theme.primary }}
@@ -108,46 +99,11 @@ const ThemePanel = () => {
                     />
                   </div>
 
-                  {/* Derived color swatches */}
-                  <div className="flex gap-2 mt-4">
-                    {[
-                      { color: theme.primary,   label: "Primary"   },
-                      { color: theme.secondary, label: "Secondary" },
-                      { color: theme.accent,    label: "Accent"    },
-                    ].map(({ color, label }) => (
-                      <div key={label} className="flex-1 text-center">
-                        <div className="h-8 rounded-md mb-1" style={{ backgroundColor: color }} />
-                        <span className="text-xs text-slate-500">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Preset swatches */}
-                <div>
-                  <span className="text-sm text-slate-400 block mb-3">Presets</span>
-                  <div className="grid grid-cols-3 gap-2">
-                    {PRESETS.map((preset) => {
-                      const c = colorsFromHue(preset.hue);
-                      const active = hue === preset.hue;
-                      return (
-                        <button
-                          key={preset.label}
-                          onClick={() => handleHue(preset.hue)}
-                          className={`rounded-lg p-3 text-xs font-medium text-white transition-all ${
-                            active
-                              ? "ring-2 ring-white ring-offset-2 ring-offset-slate-950 scale-105"
-                              : "opacity-80 hover:opacity-100 hover:scale-105"
-                          }`}
-                          style={{
-                            backgroundImage: `linear-gradient(135deg, ${c.primary}, ${c.secondary})`,
-                          }}
-                        >
-                          {preset.label}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  {/* Live preview of the single derived color */}
+                  <div
+                    className="h-12 rounded-lg mt-4"
+                    style={{ backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}
+                  />
                 </div>
               </div>
 

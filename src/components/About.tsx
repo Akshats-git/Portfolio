@@ -23,8 +23,8 @@ const About = () => {
   };
 
   const education = [
-    { year: "2020", label: "10th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ICSE Board — 97%" },
-    { year: "2022", label: "12th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ISC Board — 95.5%" },
+    { year: "2020", label: "10th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ICSE Board, 97%" },
+    { year: "2022", label: "12th Grade", school: "Douglas Memorial Higher Secondary School", detail: "ISC Board, 95.5%" },
     { year: "2026", label: "B.Tech DSAI", school: "Indian Institute of Technology Bhilai", detail: "CGPA 7.86" },
   ];
 
@@ -67,16 +67,15 @@ const About = () => {
             <div className="space-y-5">
               <p className="text-lg text-slate-300 leading-relaxed">
                 I&apos;m a B.Tech student in Data Science &amp; Artificial Intelligence
-                at IIT Bhilai and a Reliance Foundation Scholar. I enjoy building
-                full-stack applications that integrate AI — from agentic chatbots
-                and resume-matching systems to data analysis dashboards.
+                at IIT Bhilai and a Reliance Foundation Scholar. I build full-stack
+                applications that use AI, such as chatbots, resume-matching systems,
+                and data analysis dashboards.
               </p>
               <p className="text-lg text-slate-300 leading-relaxed">
-                Beyond development, I&apos;m an active competitive programmer and
-                problem solver with 356+ problems solved on Striver&apos;s A2Z sheet.
-                I work across the stack with React, Next.js, FastAPI, and Python,
-                and leverage frameworks like LangChain and PyTorch to build
-                intelligent systems.
+                I also spend time on competitive programming and have solved 356+
+                problems on Striver&apos;s A2Z sheet. I work across the stack with
+                React, Next.js, FastAPI, and Python, and I use tools like LangChain
+                and PyTorch on my AI projects.
               </p>
             </div>
 

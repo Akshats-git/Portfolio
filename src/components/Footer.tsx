@@ -80,8 +80,8 @@ const Footer = () => {
               Akshat
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              B.Tech DSAI at IIT Bhilai. Building full-stack applications
-              and AI-powered tools with clean code and thoughtful design.
+              B.Tech DSAI at IIT Bhilai. I build full-stack applications
+              and AI tools, and I enjoy solving DSA problems.
             </p>
           </motion.div>
 

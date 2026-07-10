@@ -23,7 +23,7 @@ export const projects: Project[] = [
   {
     "id": 1,
     "title": "YouTube ChatBot",
-    "description": "YouTube ChatBot is a Streamlit web application that enables AI-driven conversations with YouTube videos. Users can paste a video URL to engage in a Q&A session, where the chatbot provides answers based on the video transcript, complete with timestamped citations. This tool is particularly useful for extracting and verifying information from lengthy video content efficiently.",
+    "description": "A Streamlit app that lets you chat with any YouTube video. Paste a video URL and ask questions, and the chatbot answers from the transcript with timestamped citations so you can verify each point. It helps you find information in long videos without watching the whole thing.",
     "tags": [
       "Streamlit",
       "FAISS",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     "id": 2,
     "title": "HireLens",
-    "description": "HireLens is an AI-powered system designed to match resumes with job descriptions using advanced semantic embeddings and skill extraction techniques. It offers dual views for candidates and recruiters, enabling single resume analysis and bulk ranking/filtering, respectively. This tool streamlines the hiring process by providing precise and efficient candidate-job matching.",
+    "description": "A system that matches resumes to job descriptions using semantic embeddings and skill extraction. Candidates can analyze a single resume, while recruiters can rank and filter resumes in bulk. It gives both sides a clear view of how well a resume fits a role.",
     "tags": [
       "FastAPI",
       "React",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
   {
     "id": 3,
     "title": "WhatsApp Chat Analyzer",
-    "description": "WhatsApp Chat Analyzer is an interactive web application that provides deep insights into your WhatsApp conversations. By analyzing exported chat files, it offers visualizations of activity trends, word clouds, emoji usage, and user statistics, making it a powerful tool for understanding communication patterns.",
+    "description": "A web app that analyzes exported WhatsApp chats. It shows activity trends, word clouds, emoji usage, and per-user statistics. You can use it to see who talks most, when chats are busiest, and how a group communicates over time.",
     "tags": [
       "Streamlit",
       "Pandas",

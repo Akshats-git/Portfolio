@@ -23,19 +23,21 @@ function hslToHex(h: number, s: number, l: number): string {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+// All colors are derived from a single hue as shades of the same color,
+// so the whole portfolio stays monochromatic and changes with one slider.
 export function colorsFromHue(hue: number) {
   return {
     primary: hslToHex(hue, 70, 60),
-    secondary: hslToHex((hue + 30) % 360, 75, 65),
-    accent: hslToHex((hue + 200) % 360, 70, 60),
+    secondary: hslToHex(hue, 75, 70),
+    accent: hslToHex(hue, 65, 50),
   };
 }
 
+const DEFAULT_HUE = 270;
+
 const defaultTheme: Theme = {
-  hue: 270,
-  primary: "#a855f7",
-  secondary: "#ec4899",
-  accent: "#06b6d4",
+  hue: DEFAULT_HUE,
+  ...colorsFromHue(DEFAULT_HUE),
   background: "#09090b",
   cardBg: "#18181b",
 };
@@ -56,9 +58,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const saved = typeof window !== "undefined" && localStorage.getItem("portfolioTheme");
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Migrate old saves that lack hue
-        if (parsed.hue === undefined) parsed.hue = defaultTheme.hue;
-        setThemeState(parsed);
+        const hue = parsed.hue ?? defaultTheme.hue;
+        // Always re-derive colors from the hue so a single slider drives everything.
+        setThemeState({ ...defaultTheme, ...parsed, hue, ...colorsFromHue(hue) });
       }
     } catch {
       setThemeState(defaultTheme);

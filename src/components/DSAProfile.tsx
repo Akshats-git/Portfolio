@@ -469,7 +469,7 @@ const DSAProfile = () => {
             }}
           />
           <p className="text-slate-400 mt-4 max-w-2xl">
-            Consistent problem solver across multiple platforms with a focus on
+            I solve problems regularly across several platforms, mostly on
             data structures, algorithms, and competitive programming.
           </p>
         </motion.div>

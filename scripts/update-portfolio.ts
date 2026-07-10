@@ -84,8 +84,8 @@ ${details.readme || "No README available"}
 Return a JSON object with exactly these fields:
 {
   "title": "Human-readable project title (not the repo slug, capitalize properly)",
-  "description": "2-3 sentences. Explain what it does and why it is useful. Be specific and engaging.",
-  "tags": ["3-6 specific tech stack items — prefer specific names like FastAPI over Python, LangChain over AI"],
+  "description": "2-3 short, plain sentences. Say what the project does and how it works. Write like a person, not marketing copy. Do not use em dashes. Avoid words like seamless, powerful, cutting-edge, robust, leverage, streamline, and enable.",
+  "tags": ["3-6 specific tech stack items. Prefer specific names like FastAPI over Python, LangChain over AI"],
   "domains": ["one or more from exactly: Data Analysis, Agentic AI, ML, Full Stack"],
   "image": "a single emoji that best represents this project"
 }`;
