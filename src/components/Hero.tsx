@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -158,19 +159,21 @@ const Hero = () => {
                 <div className="rounded-full bg-slate-900 w-full h-full" />
               </motion.div>
 
-              {/* Photo placeholder */}
+              {/* Profile photo */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="relative z-10 w-64 h-64 rounded-full overflow-hidden border-4 border-slate-950 shadow-2xl"
               >
-                <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500" aria-hidden="true">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
+                <Image
+                  src="/profile.jpg"
+                  alt="Akshat"
+                  fill
+                  priority
+                  sizes="256px"
+                  className="object-cover object-center"
+                />
               </motion.div>
             </div>
           </motion.div>
