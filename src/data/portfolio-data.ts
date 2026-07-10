@@ -11,6 +11,7 @@ export interface Project {
   tags: string[];
   domains: ProjectDomain[];
   githubUrl: string;
+  liveUrl?: string;
   image: string;
 }
 
@@ -54,7 +55,8 @@ export const projects: Project[] = [
       "Full Stack"
     ],
     "image": "🔍",
-    "githubUrl": "https://github.com/Akshats-git/HireLens"
+    "githubUrl": "https://github.com/Akshats-git/HireLens",
+    "liveUrl": "http://13.51.207.145/"
   },
   {
     "id": 3,
@@ -71,7 +73,8 @@ export const projects: Project[] = [
       "Data Analysis"
     ],
     "image": "📊",
-    "githubUrl": "https://github.com/Akshats-git/Whatsapp-Chat-Analyzer"
+    "githubUrl": "https://github.com/Akshats-git/Whatsapp-Chat-Analyzer",
+    "liveUrl": "https://analyzer-whatsapp-chats.streamlit.app/"
   }
 ];
 

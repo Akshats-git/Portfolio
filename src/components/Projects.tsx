@@ -164,12 +164,12 @@ const Projects = () => {
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap justify-center gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs bg-slate-700/50 px-3 py-1 rounded-full border border-slate-600"
-                      style={{ color: theme.primary, borderColor: theme.primary }}
+                      className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
+                      style={{ color: theme.primary, backgroundColor: `${theme.primary}1a` }}
                     >
                       {tag}
                     </span>
@@ -198,32 +198,34 @@ const Projects = () => {
                     GitHub
                   </motion.a>
 
-                  <motion.a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    whileHover={{ y: -1 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-white transition-colors"
-                    style={{ background: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
-                    aria-label={`Live demo of ${project.title}`}
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
+                  {project.liveUrl && (
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-white transition-colors"
+                      style={{ background: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})` }}
+                      aria-label={`Live demo of ${project.title}`}
                     >
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    Live Demo
-                  </motion.a>
+                      <svg
+                        className="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                      Live Demo
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>

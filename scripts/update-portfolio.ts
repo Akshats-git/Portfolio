@@ -26,6 +26,7 @@ interface ProjectEntry {
   domains: ProjectDomain[];
   image: string;
   githubUrl: string;
+  liveUrl?: string;
 }
 
 interface SkillCategory {
@@ -98,7 +99,8 @@ Return a JSON object with exactly these fields:
   });
 
   const parsed = JSON.parse(res.choices[0].message.content!);
-  return { ...parsed, githubUrl: repo.html_url };
+  const liveUrl = repo.homepage?.trim() || undefined;
+  return { ...parsed, githubUrl: repo.html_url, ...(liveUrl ? { liveUrl } : {}) };
 }
 
 async function generateUpdatedSkills(
@@ -196,6 +198,7 @@ export interface Project {
   tags: string[];
   domains: ProjectDomain[];
   githubUrl: string;
+  liveUrl?: string;
   image: string;
 }
 
