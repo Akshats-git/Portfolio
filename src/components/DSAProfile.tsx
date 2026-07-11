@@ -408,7 +408,7 @@ const DSAProfile = () => {
             }}
           />
           <p className="text-slate-400 mt-4 max-w-2xl">
-            I enjoy solving coding problems very much. The primary language I use is Java. 
+            I enjoy solving coding problems very much. The primary language I use is Java.
           </p>
         </motion.div>
 

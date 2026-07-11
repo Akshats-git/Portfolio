@@ -10,11 +10,6 @@
 
 html {
   scroll-behavior: smooth;
-  --color-primary: #60a5fa;
-  --color-secondary: #06b6d4;
-  --color-accent: #8b5cf6;
-  --color-background: #0f172a;
-  --color-card-bg: #1e293b;
 }
 
 body {

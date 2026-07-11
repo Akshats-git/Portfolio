@@ -13,6 +13,8 @@ const Contact = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
   const handleChange = (
@@ -22,14 +24,32 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+      setSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setSubmitted(false);
-    }, 3000);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const containerVariants = {
@@ -280,22 +300,23 @@ const Contact = () => {
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={sending || submitted ? undefined : { scale: 1.02 }}
+              whileTap={sending || submitted ? undefined : { scale: 0.97 }}
               type="submit"
-              disabled={submitted}
-              className="relative w-full py-4 font-semibold rounded-xl text-white overflow-hidden transition-all duration-300"
+              disabled={sending || submitted}
+              className="relative w-full py-4 font-semibold rounded-xl text-white overflow-hidden transition-all duration-300 disabled:cursor-not-allowed"
               style={
                 submitted
                   ? { background: "#22c55e", boxShadow: "0 0 30px #22c55e44" }
                   : {
                       backgroundImage: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
                       boxShadow: `0 4px 30px ${theme.primary}55`,
+                      opacity: sending ? 0.75 : 1,
                     }
               }
             >
               {/* Shine sweep on hover */}
-              {!submitted && (
+              {!submitted && !sending && (
                 <span
                   className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{ background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%)" }}
@@ -308,6 +329,13 @@ const Contact = () => {
                   </svg>
                   Message Sent!
                 </span>
+              ) : sending ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                  </svg>
+                  Sending...
+                </span>
               ) : (
                 <span className="flex items-center justify-center gap-2">
                   Send Message
@@ -318,6 +346,10 @@ const Contact = () => {
                 </span>
               )}
             </motion.button>
+
+            {error && (
+              <p className="mt-4 text-sm text-red-400 text-center">{error}</p>
+            )}
           </form>
         </motion.div>
       </motion.div>

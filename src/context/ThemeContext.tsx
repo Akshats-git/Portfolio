@@ -7,7 +7,6 @@ interface Theme {
   secondary: string;
   accent: string;
   background: string;
-  cardBg: string;
   hue: number;
 }
 
@@ -39,7 +38,6 @@ const defaultTheme: Theme = {
   hue: DEFAULT_HUE,
   ...colorsFromHue(DEFAULT_HUE),
   background: "#09090b",
-  cardBg: "#18181b",
 };
 
 interface ThemeContextType {
@@ -68,13 +66,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      const root = document.documentElement;
-      root.style.setProperty("--color-primary", theme.primary);
-      root.style.setProperty("--color-secondary", theme.secondary);
-      root.style.setProperty("--color-accent", theme.accent);
-      root.style.setProperty("--color-background", theme.background);
-      root.style.setProperty("--color-card-bg", theme.cardBg);
+    if (typeof window !== "undefined") {
       localStorage.setItem("portfolioTheme", JSON.stringify(theme));
     }
   }, [theme]);
