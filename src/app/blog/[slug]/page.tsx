@@ -7,6 +7,60 @@ import { useTheme } from "@/context/ThemeContext";
 import { getBlogBySlug } from "@/data/blog-data";
 import type { ContentBlock } from "@/data/blog-data";
 
+const INLINE_PATTERN = /\*\*([^*]+)\*\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)/g;
+
+function renderInline(text: string, theme: { primary: string; secondary: string }) {
+  const nodes: React.ReactNode[] = [];
+  let cursor = 0;
+
+  for (const match of text.matchAll(INLINE_PATTERN)) {
+    const [raw, bold, code, linkText, href] = match;
+    const start = match.index ?? 0;
+
+    if (start > cursor) {
+      nodes.push(text.slice(cursor, start));
+    }
+
+    if (bold) {
+      nodes.push(
+        <strong key={start} className="font-semibold text-white">
+          {bold}
+        </strong>
+      );
+    } else if (code) {
+      nodes.push(
+        <code
+          key={start}
+          className="px-1.5 py-0.5 rounded bg-slate-800/70 text-sm font-mono text-slate-200"
+        >
+          {code}
+        </code>
+      );
+    } else {
+      nodes.push(
+        <a
+          key={start}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 transition-opacity hover:opacity-80"
+          style={{ color: theme.primary }}
+        >
+          {linkText}
+        </a>
+      );
+    }
+
+    cursor = start + raw.length;
+  }
+
+  if (cursor < text.length) {
+    nodes.push(text.slice(cursor));
+  }
+
+  return nodes;
+}
+
 function renderBlock(block: ContentBlock, index: number, theme: { primary: string; secondary: string }) {
   switch (block.type) {
     case "heading":
@@ -34,7 +88,7 @@ function renderBlock(block: ContentBlock, index: number, theme: { primary: strin
     case "paragraph":
       return (
         <p key={index} className="text-slate-300 leading-relaxed mb-4">
-          {block.text}
+          {renderInline(block.text, theme)}
         </p>
       );
     case "code":
@@ -53,10 +107,41 @@ function renderBlock(block: ContentBlock, index: number, theme: { primary: strin
         <ul key={index} className="list-disc list-inside text-slate-300 space-y-2 mb-4 ml-2">
           {block.items.map((item, i) => (
             <li key={i} className="leading-relaxed">
-              {item}
+              {renderInline(item, theme)}
             </li>
           ))}
         </ul>
+      );
+    case "table":
+      return (
+        <div key={index} className="mb-6 overflow-x-auto">
+          <table className="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-slate-700">
+                {block.headers.map((header, i) => (
+                  <th
+                    key={i}
+                    className="py-2 pr-4 font-semibold"
+                    style={{ color: theme.primary }}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, i) => (
+                <tr key={i} className="border-b border-slate-800/60">
+                  {row.map((cell, j) => (
+                    <td key={j} className="py-2 pr-4 text-slate-300">
+                      {renderInline(cell, theme)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       );
   }
 }
