@@ -66,16 +66,13 @@ const About = () => {
           <motion.div variants={itemVariants} className="space-y-8 lg:col-span-3">
             <div className="space-y-5">
               <p className="text-lg text-slate-300 leading-relaxed">
-                I&apos;m a B.Tech student in Data Science &amp; Artificial Intelligence
-                at IIT Bhilai and a Reliance Foundation Scholar. I build full-stack
-                applications that use AI, such as chatbots, resume-matching systems,
-                and data analysis dashboards.
+                I am a final year B.Tech student in Data Science &amp; Artificial Intelligence
+                at IIT Bhilai. I like building scalable backend systems and exploring the latest in AI. Very active
+                in the open-source community, I have contributed to multiple projects over the years.
               </p>
               <p className="text-lg text-slate-300 leading-relaxed">
-                I also spend time on competitive programming and have solved 356+
-                problems on Striver&apos;s A2Z sheet. I work across the stack with
-                React, Next.js, FastAPI, and Python, and I use tools like LangChain
-                and PyTorch on my AI projects.
+                I also spend time on competitive programming and have solved over 1000
+                problems across multiple coding platforms. I like learning new tech stacks through building new projects.
               </p>
             </div>
 
