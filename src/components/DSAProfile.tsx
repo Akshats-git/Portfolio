@@ -302,14 +302,10 @@ function SheetCard({ sheet, theme }: { sheet: SheetProgress; theme: { primary: s
             return (
               <motion.div
                 key={topic.name}
-                className="rounded-xl px-3 py-2.5 border transition-colors duration-200"
+                className="rounded-xl px-3 py-2.5 border"
                 style={{
-                  background: isComplete
-                    ? `${theme.primary}12`
-                    : "rgba(30,30,40,0.5)",
-                  borderColor: isComplete
-                    ? `${theme.primary}44`
-                    : "rgba(100,100,120,0.15)",
+                  background: "rgba(30,30,40,0.5)",
+                  borderColor: "rgba(100,100,120,0.15)",
                 }}
                 whileHover={{ scale: 1.03, transition: { duration: 0.15 } }}
               >
