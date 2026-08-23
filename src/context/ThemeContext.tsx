@@ -68,6 +68,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("portfolioTheme", JSON.stringify(theme));
+      const root = document.documentElement.style;
+      root.setProperty("--accent", theme.primary);
+      root.setProperty("--accent-2", theme.secondary);
+      root.setProperty("--accent-3", theme.accent);
     }
   }, [theme]);
 

@@ -1,11 +1,9 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Coursework from "@/components/Coursework";
-import Projects from "@/components/Projects";
-import OpenSource from "@/components/OpenSource";
-import Blogs from "@/components/Blogs";
 import Skills from "@/components/Skills";
-import DSAProfile from "@/components/DSAProfile";
+import Projects from "@/components/Projects";
+import CodingStrip from "@/components/CodingStrip";
+import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -14,11 +12,9 @@ export default function Home() {
     <main className="overflow-hidden">
       <Hero />
       <About />
-      <Coursework />
       <Skills />
       <Projects />
-      <OpenSource />
-      <DSAProfile />
+      <CodingStrip />
       <Blogs />
       <Contact />
       <Footer />

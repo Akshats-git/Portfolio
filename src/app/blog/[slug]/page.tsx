@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 import { getBlogBySlug } from "@/data/blog-data";
 import type { ContentBlock } from "@/data/blog-data";
+import Footer from "@/components/Footer";
+import Tag from "@/components/ui/Tag";
 
 const INLINE_PATTERN = /\*\*([^*]+)\*\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)/g;
 
@@ -67,62 +69,61 @@ function renderBlock(block: ContentBlock, index: number, theme: { primary: strin
       return (
         <h2
           key={index}
-          className="text-2xl md:text-3xl font-bold mt-10 mb-4 bg-clip-text text-transparent"
-          style={{
-            backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
-          }}
+          className="text-2xl md:text-3xl font-bold mt-12 mb-4 text-slate-50 tracking-tight"
         >
           {block.text}
         </h2>
       );
     case "subheading":
       return (
-        <h3
-          key={index}
-          className="text-xl md:text-2xl font-semibold mt-8 mb-3"
-          style={{ color: theme.primary }}
-        >
+        <h3 key={index} className="text-lg md:text-xl font-semibold mt-8 mb-3 text-slate-100">
           {block.text}
         </h3>
       );
     case "paragraph":
       return (
-        <p key={index} className="text-slate-300 leading-relaxed mb-4">
+        <p key={index} className="text-slate-300 leading-[1.8] mb-5">
           {renderInline(block.text, theme)}
         </p>
       );
     case "code":
       return (
-        <div key={index} className="mb-6">
-          <span className="inline-block px-2 py-0.5 text-xs font-mono rounded-t-md bg-slate-700 text-slate-300">
-            {block.language}
-          </span>
-          <pre className="bg-slate-800/50 rounded-lg rounded-tl-none p-4 overflow-x-auto">
+        <div key={index} className="mb-6 rounded-xl border border-white/10 overflow-hidden">
+          <div className="px-4 py-2 border-b border-white/10 bg-white/[0.03]">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500">
+              {block.language}
+            </span>
+          </div>
+          <pre className="bg-white/[0.02] p-4 overflow-x-auto">
             <code className="text-sm font-mono text-slate-200">{block.code}</code>
           </pre>
         </div>
       );
     case "list":
       return (
-        <ul key={index} className="list-disc list-inside text-slate-300 space-y-2 mb-4 ml-2">
+        <ul key={index} className="text-slate-300 space-y-2.5 mb-5 ml-1">
           {block.items.map((item, i) => (
-            <li key={i} className="leading-relaxed">
-              {renderInline(item, theme)}
+            <li key={i} className="leading-[1.8] flex gap-3">
+              <span
+                className="mt-[0.7em] h-1 w-1 shrink-0 rounded-full"
+                style={{ backgroundColor: theme.primary }}
+                aria-hidden="true"
+              />
+              <span>{renderInline(item, theme)}</span>
             </li>
           ))}
         </ul>
       );
     case "table":
       return (
-        <div key={index} className="mb-6 overflow-x-auto">
+        <div key={index} className="mb-6 overflow-x-auto rounded-xl border border-white/10">
           <table className="w-full text-left text-sm border-collapse">
             <thead>
-              <tr className="border-b border-slate-700">
+              <tr className="border-b border-white/10 bg-white/[0.03]">
                 {block.headers.map((header, i) => (
                   <th
                     key={i}
-                    className="py-2 pr-4 font-semibold"
-                    style={{ color: theme.primary }}
+                    className="py-3 px-4 font-mono text-[11px] uppercase tracking-wider text-slate-400 font-semibold"
                   >
                     {header}
                   </th>
@@ -131,9 +132,9 @@ function renderBlock(block: ContentBlock, index: number, theme: { primary: strin
             </thead>
             <tbody>
               {block.rows.map((row, i) => (
-                <tr key={i} className="border-b border-slate-800/60">
+                <tr key={i} className="border-b border-white/[0.06] last:border-0">
                   {row.map((cell, j) => (
-                    <td key={j} className="py-2 pr-4 text-slate-300">
+                    <td key={j} className="py-3 px-4 text-slate-300">
                       {renderInline(cell, theme)}
                     </td>
                   ))}
@@ -154,20 +155,15 @@ export default function BlogDetailPage() {
 
   if (!blog) {
     return (
-      <section
-        className="min-h-screen flex flex-col items-center justify-center px-4"
-        style={{ backgroundColor: theme.background }}
-      >
-        <h1 className="text-3xl font-bold text-white mb-4">Blog not found</h1>
+      <section className="min-h-screen flex flex-col items-center justify-center px-4">
+        <h1 className="text-3xl font-bold text-slate-50 mb-4">Post not found</h1>
         <p className="text-slate-400 mb-8">
           The blog post you&apos;re looking for doesn&apos;t exist.
         </p>
         <Link
-          href="/#blogs"
-          className="px-6 py-3 rounded-lg text-white font-semibold transition-all hover:opacity-90"
-          style={{
-            backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
-          }}
+          href="/blog"
+          className="px-6 py-3 rounded-full text-white font-semibold transition-opacity hover:opacity-90"
+          style={{ backgroundColor: theme.primary }}
         >
           Back to all posts
         </Link>
@@ -176,43 +172,38 @@ export default function BlogDetailPage() {
   }
 
   return (
-    <section
-      className="relative min-h-screen overflow-hidden py-20 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: theme.background }}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          backgroundImage: `radial-gradient(circle at top, ${theme.primary}22, transparent 42%), radial-gradient(circle at bottom right, ${theme.secondary}18, transparent 36%)`,
-        }}
-      />
-
-      <div className="relative max-w-3xl mx-auto pt-8">
+    <main>
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         {/* Back link */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
           <Link
-            href="/#blogs"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8"
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 transition-colors mb-10"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <line x1="19" y1="12" x2="5" y2="12" strokeLinecap="round" />
+              <polyline points="12 19 5 12 12 5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to all posts
+            All posts
           </Link>
+        </motion.div>
+
+        {/* Metadata */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="flex flex-wrap items-center gap-3 mb-5 font-mono text-xs uppercase tracking-wider"
+        >
+          <span style={{ color: theme.primary }}>{blog.category}</span>
+          <span className="text-slate-700">/</span>
+          <span className="text-slate-500">{blog.date}</span>
+          <span className="text-slate-700">/</span>
+          <span className="text-slate-500">{blog.readTime} read</span>
         </motion.div>
 
         {/* Title */}
@@ -220,98 +211,58 @@ export default function BlogDetailPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent"
-          style={{
-            backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
-          }}
+          className="text-3xl md:text-5xl font-bold mb-6 text-slate-50 tracking-tight leading-[1.15]"
         >
           {blog.title}
         </motion.h1>
 
-        {/* Metadata */}
-        <motion.div
+        {/* Description */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap items-center gap-4 mb-6"
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-lg text-slate-400 leading-relaxed mb-7"
         >
-          <span
-            className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white"
-            style={{
-              backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`,
-            }}
-          >
-            {blog.category}
-          </span>
-          <span className="text-slate-500 text-sm">{blog.date}</span>
-          <span className="text-slate-500 text-sm">{blog.readTime} read</span>
-        </motion.div>
+          {blog.description}
+        </motion.p>
 
         {/* Tags */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap gap-2 mb-8"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap gap-2 mb-10 pb-10 border-b border-white/10"
         >
-          {blog.tags.map((tag, idx) => (
-            <span
-              key={idx}
-              className="text-xs px-3 py-1 rounded-md bg-slate-800/50 text-slate-300"
-            >
-              {tag}
-            </span>
+          {blog.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </motion.div>
 
-        {/* Divider */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="h-px mb-10 origin-left"
-          style={{
-            backgroundImage: `linear-gradient(to right, ${theme.primary}, ${theme.secondary}, transparent)`,
-          }}
-        />
-
         {/* Content */}
-        <motion.article
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
         >
           {blog.content.map((block, index) => renderBlock(block, index, theme))}
-        </motion.article>
+        </motion.div>
 
         {/* Bottom navigation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-slate-700/50"
-        >
+        <div className="mt-16 pt-8 border-t border-white/10">
           <Link
-            href="/#blogs"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-100 transition-colors"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <line x1="19" y1="12" x2="5" y2="12" strokeLinecap="round" />
+              <polyline points="12 19 5 12 12 5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             Back to all posts
           </Link>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </article>
+
+      <Footer />
+    </main>
   );
 }
