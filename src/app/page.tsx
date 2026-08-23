@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Coursework from "@/components/Coursework";
 import Projects from "@/components/Projects";
+import OpenSource from "@/components/OpenSource";
 import Blogs from "@/components/Blogs";
 import Skills from "@/components/Skills";
 import DSAProfile from "@/components/DSAProfile";
@@ -16,6 +17,7 @@ export default function Home() {
       <Coursework />
       <Skills />
       <Projects />
+      <OpenSource />
       <DSAProfile />
       <Blogs />
       <Contact />

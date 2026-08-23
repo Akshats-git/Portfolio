@@ -15,6 +15,7 @@ const Navbar = () => {
     { label: "Coursework", href: "/#coursework" },
     { label: "Skills", href: "/#skills" },
     { label: "Projects", href: "/#projects" },
+    { label: "Open Source", href: "/#opensource" },
     { label: "DSA & CP", href: "/#dsa" },
     { label: "Blogs", href: "/#blogs" },
     { label: "Contact", href: "/#contact" },
