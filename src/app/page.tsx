@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import CodingStrip from "@/components/CodingStrip";
+import CodingActivity from "@/components/CodingActivity";
 import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -14,7 +14,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <CodingStrip />
+      <CodingActivity />
       <Blogs />
       <Contact />
       <Footer />
