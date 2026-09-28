@@ -34,9 +34,8 @@ const Hero = () => {
 
             <Reveal delay={0.16}>
               <p className="text-lg text-slate-400 leading-relaxed max-w-xl">
-                B.Tech DSAI student at IIT Bhilai — I build scalable backend
-                systems, explore the latest in AI, and love solving hard
-                problems.
+                B.Tech DSAI student at IIT Bhilai. I build scalable backend
+                systems, explore AI, and love solving hard problems.
               </p>
             </Reveal>
 

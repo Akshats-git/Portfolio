@@ -146,7 +146,7 @@ export default function CodingPage() {
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <PageHeader
           title="Coding Activity"
-          description="Open-source contributions and competitive programming progress, pulled live from GitHub, LeetCode, Codeforces, CodeChef and GeeksforGeeks."
+          description="Open-source contributions and competitive programming progress. Pulled live from GitHub, LeetCode, Codeforces, CodeChef and GeeksforGeeks."
         />
 
         {/* Open source */}

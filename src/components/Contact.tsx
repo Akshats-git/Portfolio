@@ -90,7 +90,7 @@ const Contact = () => {
           <SectionHeading
             index="06"
             title="Get In Touch"
-            description="Have a project in mind, or just want to say hello? Feel free to reach out."
+            description="Have a project in mind or just want to say hello? Feel free to reach out."
             align="center"
           />
         </div>

@@ -29,12 +29,12 @@ const About = () => {
             <div className="space-y-5">
               <p className="text-lg text-slate-300 leading-relaxed">
                 I am a final year B.Tech student in Data Science &amp; Artificial Intelligence
-                at IIT Bhilai. I like building scalable backend systems and exploring the latest in AI. Very active
-                in the open-source community, I have contributed to multiple projects over the years.
+                at IIT Bhilai. I like building scalable backend systems and exploring the latest in AI. I am also
+                active in the open-source community and have contributed to multiple projects over the years.
               </p>
               <p className="text-lg text-slate-300 leading-relaxed">
                 I also spend time on competitive programming and have solved over 1000
-                problems across multiple coding platforms. I like learning new tech stacks through building new projects.
+                problems across multiple coding platforms. I like learning new tech stacks by building new projects.
               </p>
             </div>
 

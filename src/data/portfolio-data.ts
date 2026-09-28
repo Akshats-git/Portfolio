@@ -22,21 +22,22 @@ export interface SkillCategory {
 
 export const projects: Project[] = [
   {
-    "id": 1,
-    "title": "YouTube ChatBot",
-    "description": "This project is a Streamlit web app that allows users to interact with YouTube videos using an AI chatbot. By pasting a video URL, users can ask questions, and the bot will respond using the video transcript, providing timestamped citations for verification.",
+    "id": 4,
+    "title": "AI-Powered Learning Assistant",
+    "description": "This app lets you upload PDFs and interact with them using AI features like chat, summaries, and quizzes. It's built with the MERN stack and uses an AI layer for generating educational content.",
     "tags": [
-      "Streamlit",
-      "FAISS",
-      "BM25",
-      "pytube",
-      "youtube-transcript-api"
+      "React",
+      "Node.js",
+      "MongoDB",
+      "OpenAI API",
+      "Tailwind CSS"
     ],
     "domains": [
-      "Agentic AI"
+      "Full Stack"
     ],
-    "image": "🤖",
-    "githubUrl": "https://github.com/Akshats-git/Youtube_ChatBot"
+    "image": "📚",
+    "githubUrl": "https://github.com/Akshats-git/AI-Powered-Learning-Assistant",
+    "liveUrl": "https://ai-learning-assistant-alpha-wine.vercel.app"
   },
   {
     "id": 2,
@@ -58,6 +59,23 @@ export const projects: Project[] = [
     "liveUrl": "http://13.51.207.145"
   },
   {
+    "id": 1,
+    "title": "YouTube ChatBot",
+    "description": "This project is a Streamlit web app that allows users to interact with YouTube videos using an AI chatbot. By pasting a video URL, users can ask questions, and the bot will respond using the video transcript, providing timestamped citations for verification.",
+    "tags": [
+      "Streamlit",
+      "FAISS",
+      "BM25",
+      "pytube",
+      "youtube-transcript-api"
+    ],
+    "domains": [
+      "Agentic AI"
+    ],
+    "image": "🤖",
+    "githubUrl": "https://github.com/Akshats-git/Youtube_ChatBot"
+  },
+  {
     "id": 3,
     "title": "WhatsApp Chat Analyzer",
     "description": "This project is a web application that analyzes exported WhatsApp chats to provide insights through visualizations and statistics. It uses Python and Streamlit to display trends, word clouds, emoji analysis, and user activity.",
@@ -73,23 +91,6 @@ export const projects: Project[] = [
     "image": "📊",
     "githubUrl": "https://github.com/Akshats-git/Whatsapp-Chat-Analyzer",
     "liveUrl": "https://analyzer-whatsapp-chats.streamlit.app/"
-  },
-  {
-    "id": 4,
-    "title": "AI-Powered Learning Assistant",
-    "description": "This app lets you upload PDFs and interact with them using AI features like chat, summaries, and quizzes. It's built with the MERN stack and uses an AI layer for generating educational content.",
-    "tags": [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "OpenAI API",
-      "Tailwind CSS"
-    ],
-    "domains": [
-      "Full Stack"
-    ],
-    "image": "📚",
-    "githubUrl": "https://github.com/Akshats-git/AI-Powered-Learning-Assistant"
   },
   {
     "id": 5,

@@ -13,7 +13,7 @@ export default function BlogIndexPage() {
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <PageHeader
           title="Writing"
-          description="Long-form notes on the systems I build — machine learning, backend engineering, and the messy parts in between."
+          description="Long-form notes on the systems I build: machine learning, backend engineering, and the messy parts in between."
         />
 
         <motion.div

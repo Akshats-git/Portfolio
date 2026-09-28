@@ -84,7 +84,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+        <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/10">
           <a
             href={project.githubUrl}
             target="_blank"

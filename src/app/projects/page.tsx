@@ -27,7 +27,7 @@ export default function ProjectsPage() {
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <PageHeader
           title="Projects"
-          description="Everything I've built — full-stack applications, ML systems, agentic AI tools, and data analysis work."
+          description="Everything I've built. Full-stack applications, ML systems, agentic AI tools, and data analysis work."
         />
 
         {/* Filter bar */}
